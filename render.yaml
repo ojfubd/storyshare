@@ -1,0 +1,21 @@
+databases:
+  - name: test1
+    databaseName: storyshare_production
+    user: storyshare 
+    region: singapore 
+
+services:
+  - type: web
+    name: storyshare-staging # サービスの名前、任意の名前でOK
+    env: ruby # 環境、Rubyを使用する
+    region: singapore # 使用するリージョン
+    plan: free # プラン、無料プランを使用
+    buildCommand: "./bin/render-build.sh" # ビルドコマンド
+    startCommand: "bundle exec puma -C config/puma.rb" # startコマンド
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: test1 # Renderのデータベース名
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false # 必要なら手動で設定する
