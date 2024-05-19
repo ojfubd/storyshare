@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'pages/howto', to: 'pages#howto'
+  get 'pages/low', to: 'pages#low'
+  get 'pages/feedback', to: 'pages#feedback'
   resources :cats
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
