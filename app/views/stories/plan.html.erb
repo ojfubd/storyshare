@@ -1,0 +1,19 @@
+<%= form_with(model: @plan, local: true, url: stories_path(story_id: @story_id)) do |f| %>
+  <!-- Planモデルの入力フォームをここに作成 -->
+  <div>
+    <%= f.label :theme %>
+    <%= f.text_field :theme%>
+  </div>
+  <div>
+    <%= f.label :motif %>
+    <%= f.text_field :motif %>
+  </div>
+  <div>
+    <%= f.label :memo %>
+    <%= f.text_field :memo %>
+  </div>
+  <div>
+    <%= f.submit "投稿" %>
+    <%= f.submit "下書き保存" %>
+  </div>
+<% end %>

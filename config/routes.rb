@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'plan/new'
+  get 'plan/create'
   root 'home#top'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
@@ -8,6 +10,17 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+
+ resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
+
+  resources :stories do
+    member do
+      get :plan
+      get :plot
+      get :worldview
+      get :text
+    end
+  end
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'
   get 'pages/feedback', to: 'pages#feedback'
