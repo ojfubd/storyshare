@@ -53,11 +53,12 @@ class StoriesController < ApplicationController
       end
     
       def plan
+        @story = Story.find(params[:id])
+        @plan = @story.plans.build(story_params[:plans_attributes])
         session[:story] ||= {}
-        session[:story][:theme] = params[:story][:theme]
-        session[:story][:motif] = params[:story][:motif]
-        session[:story][:memo] = params[:story][:memo]
-    
+        session[:story][:theme] = params[:story][:plans_attributes][:theme]
+        session[:story][:motif] = params[:story][:plans_attributes][:motif]
+        session[:story][:memo] = params[:story][:plans_attributes][:memo]  
         # sessionからデータを読み込んで新しいStoryオブジェクトを作成
         @story = Story.new(session[:story])
     
