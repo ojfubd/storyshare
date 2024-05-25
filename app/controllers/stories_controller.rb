@@ -48,14 +48,27 @@ class StoriesController < ApplicationController
 
       def plot
         @story = Story.find(params[:id])
+        @plot= Plot.new(session[:plots])
+        redirect_to plot_story_path(id: @story.id), turbo: true
       end
     
       def plan
-        @story = Story.find(params[:id])
+        session[:story] ||= {}
+        session[:story][:theme] = params[:story][:theme]
+        session[:story][:motif] = params[:story][:motif]
+        session[:story][:memo] = params[:story][:memo]
+    
+        # sessionからデータを読み込んで新しいStoryオブジェクトを作成
+        @story = Story.new(session[:story])
+    
+        # リダイレクト
+        redirect_to plot_story_path(id: @story.id), turbo: true
       end
+
     
       def worldview
         @story = Story.find(params[:id])
+        @worldview= Worldview.new(session[:world_views])
       end
     
       def text

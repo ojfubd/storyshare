@@ -17,8 +17,12 @@ Rails.application.routes.draw do
     member do
       get :plan
       get :plot
+      post :plot
+      post 'save_plan'
       get :worldview
+      post :worldview
       get :text
+      post :text
     end
   end
   get 'pages/howto', to: 'pages#howto'

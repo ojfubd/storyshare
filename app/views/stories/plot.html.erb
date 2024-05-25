@@ -1,0 +1,22 @@
+<%= form_with(model: @worldview, local: true, url: worldview_story_path ) do |f| %>
+
+  <div>
+    <%= f.label :beginning %>
+    <%= f.text_field :beginning%>
+  </div>
+  <div>
+    <%= f.label :development %>
+    <%= f.text_field :development %>
+  </div>
+  <div>
+    <%= f.label :true %>
+    <%= f.text_field :true %>
+  </div>
+  <div>
+    <%= f.label :conclusion %>
+    <%= f.text_field :conclusion %>
+  </div>
+  <div>
+    <%= f.submit "次へ" %>
+  </div>
+<% end %>

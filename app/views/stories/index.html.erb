@@ -1,1 +1,7 @@
 <%= link_to '物語作成', new_story_path, class: 'nav-link' %>
+<ul>
+<% @stories.each do |story|%>
+   <li><%= story.name %></li>
+   <li><%= story.category %></li>
+  <% end %>
+</ul>

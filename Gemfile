@@ -8,6 +8,9 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 #certification(認証)
 gem 'sorcery'
 
+#デバックツール
+gem 'pry'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
