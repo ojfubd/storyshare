@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   resources :stories do
     member do
       get :plan
+      post :plan
       get :plot
       post :plot
-      post 'save_plan'
       get :worldview
       post :worldview
       get :text
@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'
   get 'pages/feedback', to: 'pages#feedback'
-  resources :cats
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

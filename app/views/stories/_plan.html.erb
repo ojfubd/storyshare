@@ -1,4 +1,4 @@
-<%= form_with(model: [@story, @story.plans.build], local: true, url: plan_story_path ) do |f| %>
+ <p>テーマ決め</p>
 
   <div>
     <%= f.label :theme %>
@@ -12,7 +12,3 @@
     <%= f.label :memo %>
     <%= f.text_field :memo %>
   </div>
-  <div>
-    <%= f.submit "次へ" %>
-  </div>
-<% end %>

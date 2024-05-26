@@ -1,7 +1,10 @@
 <%= link_to '物語作成', new_story_path, class: 'nav-link' %>
 <ul>
 <% @stories.each do |story|%>
-   <li><%= story.name %></li>
-   <li><%= story.category %></li>
+   <li><%= link_to story.name, edit_story_path(story) %></li>
+    <%= story.category %>
+<%= link_to story_path(story), method: :delete, data: { turbo: true,confirm: 'Are you sure?' }, class: "delete-link" do %>
+  <i class="bi bi-trash"></i>
+<% end %>
   <% end %>
 </ul>

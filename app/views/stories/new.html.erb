@@ -1,19 +1,22 @@
-<% if flash.now[:alert] %>
-  <div class="alert alert-danger"><%= flash.now[:alert] %></div>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
 <% end %>
-<%= form_with(model: @story, local: true) do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :category %>
-    <%= f.select :category, Story.categories.keys.map { |k| [k.humanize, k] } %>
-  </div>
-
-  <div>
-    <%= f.submit "次へ", name: "commit" %>
-    <%= f.submit "下書き保存", name: "commit" %>
-  </div>
+<%= form_with model: @story, url: @story.new_record? ? stories_path(page: @page) : story_path(@story, page: @page), local: true do |form| %>
+  <% case @page %>
+    <% when 0 %>
+      <%= render 'story', f: form %>
+    <% when 1 %>
+      <%= render 'plan', f: form %>
+    <% when 2 %>
+      <%= render 'view_world', f: form %>
+    <% when 3 %>
+      <%= render 'text', f: form %>
+  <% end %>
+<%if @page < 3 %>
+    <%= form.submit "Next" %>
+  <% else %>
+    <%= form.submit "登録" %>
+  <% end %>
 <% end %>
