@@ -3,7 +3,7 @@
     <%= flash[:alert] %>
   </div>
 <% end %>
-<%= form_with model: @story, url: @story.new_record? ? stories_path(page: @page) : story_path(@story, page: @page), local: true do |form| %>
+<%= form_with model: @story, data: { turbo: false }, url: @story.new_record? ? stories_path(page: @page) : story_path(@story, page: @page), local: true do |form| %>
   <% case @page %>
     <% when 0 %>
       <%= render 'story', f: form %>

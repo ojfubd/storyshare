@@ -13,18 +13,17 @@ Rails.application.routes.draw do
 
  resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
 
-  resources :stories do
-    member do
-      get :plan
-      post :plan
-      get :plot
-      post :plot
-      get :worldview
-      post :worldview
-      get :text
-      post :text
-    end
+ resources :stories, only: [:show] do
+  member do
+    get 'sho_story'
+    get 'sho_theme'
+    get 'sho_world_view'
+    get 'sho_text'
   end
+end
+
+
+
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'
   get 'pages/feedback', to: 'pages#feedback'

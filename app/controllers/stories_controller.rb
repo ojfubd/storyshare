@@ -60,12 +60,32 @@ class StoriesController < ApplicationController
         end
       end
 
+
       def destroy
         @story = Story.find(params[:id])
-        @story.destroy
+        @story.destroy!
         redirect_to stories_path, notice: 'Story was successfully deleted.'
       end
 
+      def show
+        @story = Story.find(params[:id])
+      end
+    
+      def sho_story
+        @story = Story.find(params[:id])
+      end
+    
+      def sho_theme
+        @story = Story.find(params[:id])
+      end
+    
+      def sho_world_view
+        @story = Story.find(params[:id])
+      end
+    
+      def sho_text
+        @story = Story.find(params[:id])
+      end
 
       private
 
