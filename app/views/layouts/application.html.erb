@@ -10,9 +10,6 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <% flash.each do |key, message| %>
-    <div class="flash <%= key %>"><%= message %></div>
-    <% end %>
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>

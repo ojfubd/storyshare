@@ -1,14 +1,18 @@
  <p>テーマ決め</p>
-
-  <div>
-    <%= f.label :theme %>
-    <%= f.text_field :theme%>
-  </div>
-  <div>
-    <%= f.label :motif %>
-    <%= f.text_field :motif %>
-  </div>
-  <div>
-    <%= f.label :memo %>
-    <%= f.text_field :memo %>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        <%= f.label :theme, class: "form-label" %>
+        <%= f.text_area :theme, class: "form-control", rows: 9 %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :motif, class: "form-label" %>
+        <%= f.text_area :motif, class: "form-control", rows: 9 %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :memo, class: "form-label" %>
+        <%= f.text_area :memo, class: "form-control", rows: 9 %>
+      </div>
+    </div>
   </div>

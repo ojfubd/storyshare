@@ -13,4 +13,12 @@ class Story < ApplicationRecord
         その他: 10
       }
     belongs_to :user
+    validates :name, presence: true,length: { maximum: 30, message: "は30文字以内で入力してください" }
+    validates :theme, length: { maximum: 1000, message: "は1000文字以内で入力してください"  }
+    validates :motif, length: { maximum: 4000, message: "は4000文字以内で入力してください"  }
+    validates :memo, length: { maximum: 4000, message: "は4000文字以内で入力してください"  }
+    validates :place, length: { maximum: 2000, message: "は2000文字以内で入力してください" }
+    validates :era, length: { maximum: 2000, message: "は2000文字以内で入力してください"  }
+    validates :character, length: { maximum: 2000, message: "は2000文字以内で入力してください" }
+    validates :body, length: { maximum: 10000, message: "は10000文字以内で入力してください" }
 end

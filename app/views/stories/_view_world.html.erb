@@ -1,13 +1,19 @@
 <p>世界観</p>
-  <div>
-    <%= f.label :place %>
-    <%= f.text_field :place%>
+ <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        <%= f.label :place, class: "form-label" %>
+        <%= f.text_area :place, class: "form-control", rows: 9 %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :era, class: "form-label" %>
+        <%= f.text_area :era, class: "form-control", rows: 9 %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :character, class: "form-label" %>
+        <%= f.text_area :character, class: "form-control", rows: 9 %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :era %>
-    <%= f.text_field :era %>
-  </div>
-  <div>
-    <%= f.label :character %>
-    <%= f.text_field :character %>
-  </div>
+</div>

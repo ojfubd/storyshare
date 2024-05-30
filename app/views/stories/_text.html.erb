@@ -1,5 +1,7 @@
 <p>本文</p>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </div>
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+        <div class="mb-3">
+            <%= f.label :body, class: "form-label" %>
+            <%= f.text_area :body, class: "form-control", rows: 27 %>
+        </div>
+    </div>

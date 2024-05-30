@@ -5,12 +5,14 @@ ruby "3.1.4"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 
+#キャッシュストア使用のため
+gem 'redis-rails'
 #certification(認証)
 gem 'sorcery'
 
 #デバックツール
 gem 'pry'
-
+gem 'pry-byebug'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

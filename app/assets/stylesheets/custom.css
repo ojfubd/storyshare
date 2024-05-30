@@ -5,3 +5,24 @@
   .footer-buttons {
     text-align: right; /* リンクを中央揃えにする */
   }
+
+  .form-container {
+    display: flex;
+    align-items: center; /* 垂直方向の配置を揃える */
+  }
+  
+  .form-container .container {
+    margin-left: 10px; /* ボタンと入力欄の間に少しスペースを追加 */
+  }
+
+  .story-item {
+    display: flex;
+    justify-content: flex-start; /* 左揃えにする */
+    gap: 10px; /* 要素間のスペースを調整 */
+  }
+  
+  .sample-image {
+    width: 30px; /* 画像の幅を調整 */
+    height: 50px;
+    height: auto;
+  }

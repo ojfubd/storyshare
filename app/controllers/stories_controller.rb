@@ -4,33 +4,41 @@ class StoriesController < ApplicationController
       end
     
       def new
-        session[:story_params] ||= {}
-        @story = Story.new(session[:story_params])
+        @story = Story.new
         @page = params[:page].to_i
-        Rails.logger.debug session[:story_params].inspect
       end
     
       def create
-        session[:story_params].deep_merge!(story_params)
-        Rails.logger.debug session[:story_params].inspect
-        @story = Story.new(session[:story_params])
-        @story.user = current_user  # ここでUserを設定する
-        @page = params[:page].to_i
-        if @page < 3
-            @page += 1
-            render :new 
-          else
+        success = false
+        @page = 0
+          # トランザクションを開始する
+        ActiveRecord::Base.transaction do
+          begin
+            # データベースに一時保存する処理
+            @story = Story.new(story_params.merge(user_id: current_user.id))
             if @story.save
-              session[:story_params] = nil
-              redirect_to stories_path, notice: 'Story was successfully created.'
+              # 保存したストーリーデータを取得し、マージする
+              @story.assign_attributes(story_params)
+              @page =+ 1
+              success = true
             else
-                Rails.logger.debug @story.errors.full_messages.join(", ")
-                flash[:now] = '登録失敗しました' 
-                puts @story.errors.full_messages.join(", ")
-              render :new
+            flash[:error] = @story.errors.full_messages.join(", ")
+            raise ActiveRecord::Rollback
             end
+          rescue => e
+            flash[:error] = @story.errors.full_messages.join(", ")
+            # ロールバックを明示的に行う
+            raise ActiveRecord::Rollback
           end
+        end
+        if success
+          render :new
+        else
+          render :new
+        end
       end
+      
+  
 
       def edit
         @story = Story.find(params[:id])
@@ -40,24 +48,36 @@ class StoriesController < ApplicationController
       end
     
       def update
-        session[:story_params] ||= {}
-        session[:story_params].deep_merge!(story_params.to_h) if params[:story]
         @story = Story.find(params[:id])
         @story.user = current_user  # ここでUserを設定する
         @page = params[:page].to_i
-    
-        if @page < 3
-          @page += 1
-          render :new
-        else
-          if @story.update(session[:story_params])
-            session[:story_params] = nil
-            redirect_to stories_path, notice: 'Story was successfully updated.'
+          success2 = false
+              # トランザクションを開始する
+          ActiveRecord::Base.transaction do
+            begin
+              if @story.update(story_params)
+                if @page < 3
+                  @page += 1
+                  success2 = true
+                else
+                  redirect_to stories_path, notice: 'Story was successfully updated.'
+                  return  # 処理を中断するために return する
+                end
+              else
+                flash[:error] = @story.errors.full_messages.join(", ")
+                raise ActiveRecord::Rollback
+              end
+            rescue => e
+              flash[:error] = @story.errors.full_messages.join(", ")
+              # ロールバックを明示的に行う
+              raise ActiveRecord::Rollback
+            end
+          end
+          if success2
+            render :new
           else
-            flash[:now] = '更新失敗しました'
             render :new
           end
-        end
       end
 
 
@@ -92,4 +112,9 @@ class StoriesController < ApplicationController
       def story_params
         params.require(:story).permit(:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo)
       end
+
+      def in_transaction?
+        ActiveRecord::Base.connection.open_transactions > 0
+      end
+
 end

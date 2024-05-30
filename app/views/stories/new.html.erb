@@ -1,22 +1,25 @@
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
+<% if @story.errors.any? %>
+  <%= render 'shared/error_message', object: @story %>
 <% end %>
 <%= form_with model: @story, data: { turbo: false }, url: @story.new_record? ? stories_path(page: @page) : story_path(@story, page: @page), local: true do |form| %>
-  <% case @page %>
-    <% when 0 %>
-      <%= render 'story', f: form %>
-    <% when 1 %>
-      <%= render 'plan', f: form %>
-    <% when 2 %>
-      <%= render 'view_world', f: form %>
-    <% when 3 %>
-      <%= render 'text', f: form %>
-  <% end %>
-<%if @page < 3 %>
-    <%= form.submit "Next" %>
-  <% else %>
-    <%= form.submit "登録" %>
-  <% end %>
+  <div class="form-container">
+    <% case @page %>
+      <% when 0 %>
+        <%= render 'story', f: form %>
+      <% when 1 %>
+        <%= render 'plan', f: form %>
+      <% when 2 %>
+        <%= render 'view_world', f: form %>
+      <% when 3 %>
+        <%= render 'text', f: form %>
+    <% end %>
+    
+    <div class="container">
+      <% if @page < 3 %>
+        <%= form.submit "Next" %>
+      <% else %>
+        <%= form.submit "登録" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

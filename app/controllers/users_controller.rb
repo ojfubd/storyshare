@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, notice: 'ユーザーが登録されました'
     else
-      render :new
+      render :new, notice: 'ユーザー登録に失敗しました'
     end
   end
 
