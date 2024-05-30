@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.hosts << "storyshare.onrender.com"
+  config.hosts << "storyshare-1.onrender.com"
   # Code is not reloaded between requests.
   config.enable_reloading = false
   # Eager load code on boot. This eager loads most of Rails and
