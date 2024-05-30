@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to root_path, notice: 'ログインに成功しました'
     else
       flash.now[:alert] = 'ログインに失敗しました'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

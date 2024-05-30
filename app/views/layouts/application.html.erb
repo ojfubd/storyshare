@@ -15,9 +15,6 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <% flash.each do |key, message| %>
-      <div class="alert alert-<%= key %>"><%= message %></div>
-    <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
