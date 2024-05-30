@@ -1,3 +1,6 @@
+<% flash.each do |key, message| %>
+      <div class="alert alert-<%= key %>"><%= message %></div>
+    <% end %>
 <%= form_with model: @user, local: true do |f| %>
   <div>
     <%= f.label :email %>
