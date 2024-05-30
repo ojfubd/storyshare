@@ -5,8 +5,6 @@ Rails.application.configure do
   config.hosts << "storyshare.onrender.com"
   # Code is not reloaded between requests.
   config.enable_reloading = false
-  #キャッシュストアを使用
-  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
