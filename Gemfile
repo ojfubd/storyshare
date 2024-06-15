@@ -10,6 +10,9 @@ gem 'redis-rails'
 #certification(認証)
 gem 'sorcery'
 
+#画像アップロード機能
+gem 'carrierwave'
+
 #デバックツール
 gem 'pry'
 gem 'pry-byebug'

@@ -2,13 +2,17 @@ Rails.application.routes.draw do
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
+  get 'my', to:'home#my'
+  get 'myedit', to: 'home#myedit'
+  patch 'myupdate', to: 'home#myupdate'
+  put 'myupdate', to: 'home#myupdate'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
 
  resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
