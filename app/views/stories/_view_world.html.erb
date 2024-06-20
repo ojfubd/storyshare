@@ -4,15 +4,18 @@
     <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
         <%= f.label :place, class: "form-label" %>
-        <%= f.text_area :place, class: "form-control", rows: 9 %>
+        <%= f.text_area :place, id:'place',class: "form-control", rows: 9 %>
+        <%= button_tag '場所自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "place-auto-fill" } %>
       </div>
       <div class="mb-3">
         <%= f.label :era, class: "form-label" %>
-        <%= f.text_area :era, class: "form-control", rows: 9 %>
+        <%= f.text_area :era,id:'era', class: "form-control", rows: 9 %>
+        <%= button_tag '時代自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "era-auto-fill" } %>
       </div>
       <div class="mb-3">
         <%= f.label :character, class: "form-label" %>
-        <%= f.text_area :character, class: "form-control", rows: 9 %>
+        <%= f.text_area :character, id:'chara', class: "form-control", rows: 9 %>
+        <%= button_tag 'キャラ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "chara-auto-fill" } %>
       </div>
     </div>
   </div>
