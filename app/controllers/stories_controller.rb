@@ -5,44 +5,25 @@ class StoriesController < ApplicationController
     
       def new
         @story = Story.new
-        @page = params[:page].to_i
       end
     
       def create
-        success = false
-        @page = 0
-          # トランザクションを開始する
-        ActiveRecord::Base.transaction do
-          begin
             # データベースに一時保存する処理
-            @story = Story.new(story_params.merge(user_id: current_user.id))
+            @story = Story.new(story_params)
+            @story.user = current_user 
             if @story.save
-              # 保存したストーリーデータを取得し、マージする
-              @story.assign_attributes(story_params)
-              @page =+ 1
-              success = true
+              redirect_to stories_path, notice: '物語が作成されました'
             else
-            flash[:error] = @story.errors.full_messages.join(", ")
-            raise ActiveRecord::Rollback
+              flash[:error] = @story.errors.full_messages.join(", ")
+              render :new
             end
-          rescue => e
-            flash[:error] = @story.errors.full_messages.join(", ")
-            # ロールバックを明示的に行う
-            raise ActiveRecord::Rollback
-          end
-        end
-        if success
-          render :new
-        else
-          render :new
-        end
       end
+     
       
   
 
       def edit
         @story = Story.find(params[:id])
-        @page = 0
         render :new
 
       end
@@ -50,34 +31,11 @@ class StoriesController < ApplicationController
       def update
         @story = Story.find(params[:id])
         @story.user = current_user  # ここでUserを設定する
-        @page = params[:page].to_i
-          success2 = false
-              # トランザクションを開始する
-          ActiveRecord::Base.transaction do
-            begin
-              if @story.update(story_params)
-                if @page < 3
-                  @page += 1
-                  success2 = true
-                else
-                  redirect_to stories_path, notice: 'Story was successfully updated.'
-                  return  # 処理を中断するために return する
-                end
-              else
-                flash[:error] = @story.errors.full_messages.join(", ")
-                raise ActiveRecord::Rollback
-              end
-            rescue => e
-              flash[:error] = @story.errors.full_messages.join(", ")
-              # ロールバックを明示的に行う
-              raise ActiveRecord::Rollback
-            end
-          end
-          if success2
-            render :new
-          else
-            render :new
-          end
+        if @story.update(story_params)
+            redirect_to stories_path, notice: 'Story was successfully updated.'
+        else
+            flash[:error] = @story.errors.full_messages.join(", ")
+        end
       end
 
 

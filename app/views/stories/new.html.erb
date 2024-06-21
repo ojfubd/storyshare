@@ -1,25 +1,73 @@
 <% if @story.errors.any? %>
   <%= render 'shared/error_message', object: @story %>
 <% end %>
-<%= form_with model: @story, data: { turbo: false }, url: @story.new_record? ? stories_path(page: @page) : story_path(@story, page: @page), local: true do |form| %>
-  <div class="form-container">
-    <% case @page %>
-      <% when 0 %>
-        <%= render 'story', f: form %>
-      <% when 1 %>
-        <%= render 'plan', f: form %>
-      <% when 2 %>
-        <%= render 'view_world', f: form %>
-      <% when 3 %>
-        <%= render 'text', f: form %>
-    <% end %>
-    
-    <div class="container">
-      <% if @page < 3 %>
-        <%= form.submit "Next" %>
-      <% else %>
-        <%= form.submit "登録" %>
-      <% end %>
+<%= form_with model: @story, data: { turbo: false }, local: true do |f| %>
+
+  <p>基本設定</p>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category, Story.categories.keys.map { |k| [k.humanize, k] } %>
+  </div>
+
+<p>テーマ決め</p>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        <%= f.label :theme, class: "form-label", for:'password' %>
+        <%= f.text_area :theme, id:'theme', class: "form-control", rows: 9 %>
+        <%= button_tag 'テーマ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "auto-fill" } %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :motif, class: "form-label" %>
+        <%= f.text_area :motif, id:'genre', class: "form-control", rows: 9 %>
+        <%= button_tag 'まるまるもの（サブジャンル）自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "genre-auto-fill" } %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :memo, class: "form-label" %>
+        <%= f.text_area :memo, class: "form-control", rows: 9 %>
+      </div>
     </div>
+  </div>
+
+<p>世界観</p>
+ <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        <%= f.label :place, class: "form-label" %>
+        <%= f.text_area :place, id:'place',class: "form-control", rows: 9 %>
+        <%= button_tag '場所自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "place-auto-fill" } %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :era, class: "form-label" %>
+        <%= f.text_area :era,id:'era', class: "form-control", rows: 9 %>
+        <%= button_tag '時代自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "era-auto-fill" } %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :character, class: "form-label" %>
+        <%= f.text_area :character, id:'chara', class: "form-control", rows: 9 %>
+        <%= button_tag 'キャラ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "chara-auto-fill" } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>本文</p>
+  <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+            <%= f.label :body, class: "form-label" %>
+            <%= f.text_area :body, class: "form-control", rows: 27 %>
+      </div>
+ </div>
+
+  <div class="container">
+    <%= f.submit "登録" %>
+  </div>
   </div>
 <% end %>
