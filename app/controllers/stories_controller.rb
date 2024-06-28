@@ -1,6 +1,8 @@
 class StoriesController < ApplicationController
       def index
-        @stories = Story.all
+        @stories = Story.all.select do |story|
+          story.published? || (logged_in? && (current_user == story.user))
+        end
       end
     
       def new
@@ -8,15 +10,15 @@ class StoriesController < ApplicationController
       end
     
       def create
-            # データベースに一時保存する処理
-            @story = Story.new(story_params)
-            @story.user = current_user 
-            if @story.save
-              redirect_to stories_path, notice: '物語が作成されました'
-            else
-              flash[:error] = @story.errors.full_messages.join(", ")
-              render :new
-            end
+        # データベースに一時保存する処理
+        @story = Story.new(story_params)
+        @story.user = current_user 
+        if @story.save
+          redirect_to stories_path, notice: '物語が作成されました'
+        else
+          flash[:error] = @story.errors.full_messages.join(", ")
+          render :new
+        end
       end
      
       
@@ -68,7 +70,7 @@ class StoriesController < ApplicationController
       private
 
       def story_params
-        params.require(:story).permit(:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo)
+        params.require(:story).permit(:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status)
       end
 
       def in_transaction?

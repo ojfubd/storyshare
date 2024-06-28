@@ -4,7 +4,20 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     this.element.addEventListener('click', this.autoFill.bind(this))
+    const themeArea = document.getElementById('chara');
+    if (themeArea) {
+      themeArea.addEventListener('input', this.countChara5.bind(this));
+    }
   }
+
+  countChara5() {
+    const textArea = document.getElementById('chara');
+    const charCount = document.getElementById('charCount5');
+    if (textArea && charCount) {
+      charCount.textContent = textArea.value.length;
+    }
+  }
+
   //迷い要素：複数の値を表示させるかどうか
   autoFill() {
     const values = {

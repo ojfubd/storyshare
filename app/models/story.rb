@@ -12,6 +12,7 @@ class Story < ApplicationRecord
         コメディー: 9,
         その他: 10
       }
+    enum status: { draft: 0, published: 1 }
     belongs_to :user
     validates :name, presence: true,length: { maximum: 30, message: "は30文字以内で入力してください" }
     validates :theme, length: { maximum: 1000, message: "は1000文字以内で入力してください"  }

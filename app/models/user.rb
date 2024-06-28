@@ -17,4 +17,10 @@ class User < ApplicationRecord
       self.avatar = Rails.root.join("app/assets/images/user.png").open
     end
   end
+  def self.guest
+      find_or_create_by(email: 'guest@example.com') do |user|
+      user.password = '0000'
+      user.password_confirmation = '0000'
+  end
+end
 end

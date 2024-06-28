@@ -1,4 +1,7 @@
 <h1>基本設定</h1>
+<p><strong>著者:</strong> <%= @story.user.email %></p>
+<%# ゲスト機能ができるまでemailになるがゲスト機能ができたらnameに戻す %>
 <p><strong>Name:</strong> <%= @story.name %></p>
 <p><strong>Category:</strong> <%= @story.category %></p>
+<p><strong>公開:</strong> <%= @story.status %></p>
 <%= link_to "次へ", sho_theme_story_path(@story) %>

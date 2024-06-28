@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'my', to:'home#my'
   get 'myedit', to: 'home#myedit'
+  post 'guest_sign_in', to: 'home#new_guest'
   patch 'myupdate', to: 'home#myupdate'
   put 'myupdate', to: 'home#myupdate'
   get 'signup', to: 'users#new'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   resources :users, only: [:new, :create, :edit, :update]
+  delete 'users/:id', to: 'users#destroy', as: 'delete_user'
+
   resources :sessions, only: [:new, :create, :destroy]
 
  resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]

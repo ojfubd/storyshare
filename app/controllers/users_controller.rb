@@ -13,6 +13,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy!
+    redirect_to root_path, notice: 'アカウントが削除されました。またのご利用お待ちしています'
+  end
+
   private
 
   def user_params
