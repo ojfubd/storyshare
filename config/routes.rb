@@ -20,6 +20,16 @@ Rails.application.routes.draw do
 
  resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
 
+  namespace :admin do
+    root "dashboards#index"
+    resource :dashboard, only: %i[index]
+    get 'login' => 'users_sessions#new', :as => :login
+    post 'login' => "users_sessions#create"
+    delete 'logout' => 'users_sessions#destroy', :as => :logout
+    resources :users
+    resources :stories
+  end
+
  resources :stories, only: [:show] do
   member do
     get 'sho_story'
