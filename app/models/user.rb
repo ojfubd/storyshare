@@ -3,6 +3,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   after_initialize :set_default_avatar, if: :new_record?
 
+
   has_many :stories
   
   validates :email, presence: true, uniqueness: true
@@ -11,6 +12,25 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   enum role: { general: 0, admin: 1 }
+
+  def level
+    levelList = [1,2,4,6,9,11,13]
+    story_count = stories.count
+    userlevel = 0
+    #もしカウントがlevelListが+1される
+    #例えばstory_countが5だった場合
+    levelList.each do |level|
+      if story_count >= level
+        userlevel += 1
+      else
+        break
+      end
+    end
+
+
+    userlevel
+
+  end
 
   private
 

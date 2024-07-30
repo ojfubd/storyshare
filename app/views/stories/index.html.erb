@@ -1,14 +1,26 @@
 <%= link_to '物語作成', new_story_path, class: 'btn btn-lg btn-primary' %>
-<div class ="story-item">
-<% @stories.each do |story|%>
-  <%= image_tag 'sample.jpg', class: 'sample-image' %>
-  <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
-  <span class="story-category"><%= story.category %></span>
-  <%= link_to story_path(story), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link" do %>
-    <i class="bi bi-trash"></i>
-  <% end %>
-  <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
-    <i class="bi bi-pencil-fill"></i>
+<p>自分の物語</p>
+<% @stories.each do |story| %>
+  <% if current_user == story.user %>
+    <%= image_tag 'sample.jpg', class: 'sample-image' %>
+    <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+    <span class="story-category"><%= story.category %></span>
+    <%= link_to story_path(story), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link" do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+    <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
+      <i class="bi bi-pencil-fill"></i>
+    <% end %>
+    <p>閲覧数:<%= story.views %>view</p>
   <% end %>
 <% end %>
-</div>
+
+<p>みんなの物語</p>
+<% @stories.each do |story| %>
+  <% if story.published? %>
+    <%= image_tag 'sample.jpg', class: 'sample-image' %>
+    <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+    <span class="story-category"><%= story.category %></span>
+    <p>閲覧数:<%= story.views %>view</p>
+  <% end %>
+<% end %>

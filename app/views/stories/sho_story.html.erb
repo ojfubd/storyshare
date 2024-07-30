@@ -4,4 +4,5 @@
 <p><strong>Name:</strong> <%= @story.name %></p>
 <p><strong>Category:</strong> <%= @story.category %></p>
 <p><strong>公開:</strong> <%= @story.status %></p>
+<p>閲覧数: <%= @story.views %> view</p>
 <%= link_to "次へ", sho_theme_story_path(@story) %>

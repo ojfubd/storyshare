@@ -49,10 +49,12 @@ class StoriesController < ApplicationController
 
       def show
         @story = Story.find(params[:id])
+        @story.increment!(:views)
       end
     
       def sho_story
         @story = Story.find(params[:id])
+        @story.increment!(:views)
       end
     
       def sho_theme

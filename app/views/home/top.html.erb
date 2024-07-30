@@ -1,1 +1,29 @@
+<p>最新の物語</p>
+<div class="scrollable-container overflow-auto">
+  <ul>
+    <% @latest_stories.each do |latest_story| %>
+      <li>
+        <%= link_to latest_story.name, sho_story_story_path(latest_story) %><br>
+        <%= latest_story.category %><br>
+        閲覧数: <%= latest_story.views %> view
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<p>人気の物語</p>
+<div>
+  <ul class="wrapper">
+    <% @popular_stories.each do |popular_story| %>
+      <li class="list">
+        <%= link_to popular_story.name, sho_story_story_path(popular_story) %><br>
+        <%= popular_story.category %><br>
+        閲覧数: <%= popular_story.views %> view
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
 <%= link_to '設定', '#', class: 'nav-link' %>
+

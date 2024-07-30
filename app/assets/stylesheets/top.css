@@ -1,0 +1,40 @@
+.scrollable-container {
+    white-space: nowrap; /* 子要素が折り返されないようにする */
+    background-color: rgb(0, 47, 255);
+    width:200px;
+    height:100px;
+  }
+  
+  .scrollable-container ul {
+    display: inline-block; /* 親要素の白空間設定を尊重する */
+    padding: 0; /* パディングをリセットする */
+    margin: 0; /* マージンをリセットする */
+  }
+  
+  .scrollable-container li {
+    display: inline-block; /* アイテムをインラインブロックにして水平に並べる */
+    margin-right: 10px; /* 要素間のスペースを調整 */
+    text-align: center; /* テキストを中央揃えにする */
+  }
+
+  .wrapper ul{
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+  /*   見た目整理用 */
+    background: lightgray;
+    width: 800px;
+    margin-bottom: 40px;
+  }
+  
+  .list li{
+    flex-grow: 1;
+    min-width: 240px;
+    max-width: calc(50% - 20px);
+  /*   見た目整理用 */
+    background: #ffffff;
+    border: 1px solid gray;
+    border-radius: 8px;
+    display: block;
+    height: 80px;
+  }

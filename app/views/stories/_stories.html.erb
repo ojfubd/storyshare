@@ -7,4 +7,5 @@
     <%= link_to edit_story_path(story), id: 'button-edit-#{board.id}' do %>
         <i class="bi bi-pencil-fill"></i>
     <% end %>
-  <% end %>
+    <%= story.views %>
+<% end %>

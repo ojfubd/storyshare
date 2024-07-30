@@ -3,6 +3,9 @@
 Eメール <%=@user.email%>
 <%= link_to '毎日カレンダー', '#', class: 'nav-link' %>
 <%= link_to 'レベル', '#', class: 'nav-link' %>
+<p>物語数：<%=@count%></p>
+<p>レベル<%= @level %>Lv</p>
+<p>あと物語数<%= @next_level %>でレベルup</p>
 
 <%= link_to '設定', '#', class: 'nav-link' %>
 <%= link_to 'マイページ編集', myedit_path, class: 'nav-link' %>
