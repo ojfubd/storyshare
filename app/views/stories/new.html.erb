@@ -21,6 +21,7 @@
   <div class="row">
     <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
+        
         <%= f.label :theme, class: "form-label", for:'password' %>
         <%= f.text_area :theme, id:'theme', class: "form-control", rows: 9 %>
         <%= button_tag 'テーマ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "theme-auto-fill" } %>

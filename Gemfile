@@ -29,7 +29,7 @@ gem "puma", ">= 5.0"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
-gem "dartsass-rails", "~> 0.5.0"
+gem "dartsass-rails", "~> 0.4.0"
 
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]

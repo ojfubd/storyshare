@@ -1,4 +1,14 @@
 <%= link_to '物語作成', new_story_path, class: 'btn btn-lg btn-primary' %>
+<div data-controller="issen">
+  <input data-issen-target="name" type="text">
+
+  <button data-action="click->issen#greet">
+    Greet
+  </button>
+
+  <span data-issen-target="output">
+  </span>
+</div>
 <p>自分の物語</p>
 <% @stories.each do |story| %>
   <% if current_user == story.user %>

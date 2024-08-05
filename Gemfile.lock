@@ -107,9 +107,8 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
-    dartsass-rails (0.5.0)
+    dartsass-rails (0.4.0)
       railties (>= 6.0.0)
-      sass-embedded (~> 1.63)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -129,9 +128,6 @@ GEM
     ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.27.2-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
     hashie (5.0.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
@@ -283,8 +279,6 @@ GEM
     ruby-vips (2.2.1)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    sass-embedded (1.77.5-arm64-darwin)
-      google-protobuf (>= 3.25, < 5.0)
     selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -346,7 +340,7 @@ DEPENDENCIES
   capybara
   carrierwave
   cssbundling-rails
-  dartsass-rails (~> 0.5.0)
+  dartsass-rails (~> 0.4.0)
   debug
   error_highlight (>= 0.4.0)
   jbuilder
