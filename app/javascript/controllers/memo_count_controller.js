@@ -16,5 +16,4 @@ export default class extends Controller {
       charCount.textContent = textArea.value.length;
     }
   }
-
 }
