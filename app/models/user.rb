@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
 
   has_many :stories
+  has_many :comments
   
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }

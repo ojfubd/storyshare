@@ -1,3 +1,29 @@
 <h1>本文</h1>
 <p><strong>Body:</strong> <%= @story.body %></p>
-<%= link_to "戻る", stories_path %>
+
+<p>コメント作成予定</p>
+
+<h3>コメント</h3>
+<%= form_with(model: [ @story, Comment.new ], local: true) do |form| %>
+  <div>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit "コメントを投稿" %>
+  </div>
+<% end %>
+
+<h4>コメント一覧</h4>
+<% @comments.each do |comment| %>
+  <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
+  <% if current_user == comment.user %>
+    <%= link_to  story_comment_path(comment.story_id, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link" do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+    <%= link_to "編集", '#', class: 'edit-link' %>
+  <% end %>
+<% end %>
+
+<%= link_to "物語作成画面に戻る", stories_path %>
+<br>
+<%= link_to "トップ画面に戻る", root_path %>

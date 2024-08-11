@@ -67,6 +67,7 @@ class StoriesController < ApplicationController
     
       def sho_text
         @story = Story.find(params[:id])
+        @comments = @story.comments 
       end
 
       private

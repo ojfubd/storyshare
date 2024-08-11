@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   end
 end
 
-
+resources :stories do
+  resources :comments, only: [:create, :index, :destroy]
+end
 
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'

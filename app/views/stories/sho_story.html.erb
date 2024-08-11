@@ -1,8 +1,17 @@
 <h1>基本設定</h1>
 <p><strong>著者:</strong> <%= @story.user.email %></p>
 <%# ゲスト機能ができるまでemailになるがゲスト機能ができたらnameに戻す %>
-<p><strong>Name:</strong> <%= @story.name %></p>
-<p><strong>Category:</strong> <%= @story.category %></p>
+<p><strong>作品名:</strong> <%= @story.name %></p>
+<p><strong>分類:</strong> <%= @story.category %></p>
 <p><strong>公開:</strong> <%= @story.status %></p>
 <p>閲覧数: <%= @story.views %> view</p>
-<%= link_to "次へ", sho_theme_story_path(@story) %>
+
+<h1>テーマ決め</h1>
+<p><strong>テーマ:</strong> <%= @story.theme %></p>
+<p><strong>モチーフ:</strong> <%= @story.motif %></p>
+<p><strong>メモ:</strong> <%= @story.memo %></p>
+<h1>世界観</h1>
+<p><strong>場所:</strong> <%= @story.place %></p>
+<p><strong>時代:</strong> <%= @story.era %></p>
+<p><strong>キャラクター:</strong> <%= @story.character %></p>
+<%= link_to "本文を読む", sho_text_story_path(@story) %>
