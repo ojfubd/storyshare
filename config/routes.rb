@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'bookmark/create'
+  get 'bookmark/destroy'
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
@@ -41,6 +43,9 @@ end
 
 resources :stories do
   resources :comments, only: [:create, :index, :destroy]
+  collection do
+    get :bookmarks
+  end
 end
 
   get 'pages/howto', to: 'pages#howto'

@@ -13,7 +13,8 @@ class Story < ApplicationRecord
         その他: 10
       }
     enum status: { draft: 0, published: 1 }
-    has_many :comments
+    has_many :comments, dependent: :destroy
+    has_many :bookmarks, dependent: :destroy
     belongs_to :user
     validates :name, presence: true,length: { maximum: 30, message: "は30文字以内で入力してください" }
     validates :theme, length: { maximum: 1000, message: "は1000文字以内で入力してください"  }

@@ -5,7 +5,9 @@ class User < ApplicationRecord
 
 
   has_many :stories
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_stories, through: :bookmarks, source: :story
   
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
@@ -31,6 +33,22 @@ class User < ApplicationRecord
 
     userlevel
 
+  end
+
+  def own?(object)
+    id == object&.user_id
+  end
+
+  def bookmark(story)
+    bookmark_boards << story
+  end
+  
+  def unbookmark(story)
+    bookmark_boards.destroy(story)
+  end
+  
+  def bookmark?(story)
+    bookmark_boards.include?(story)
   end
 
   private
