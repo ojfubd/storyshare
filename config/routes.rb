@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'bookmark/create'
-  get 'bookmark/destroy'
+  get 'bookmarks/create'
+  get 'bookmarks/destroy'
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
@@ -18,10 +18,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   delete 'users/:id', to: 'users#destroy', as: 'delete_user'
 
-  resources :sessions, only: [:new, :create, :destroy]
-
- resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
-
   namespace :admin do
     root "dashboards#index"
     resource :dashboard, only: %i[index]
@@ -32,7 +28,17 @@ Rails.application.routes.draw do
     resources :stories
   end
 
- resources :stories, only: [:show] do
+
+resources :stories do
+  collection do
+    get :bookmarks, to: 'stories#bookmarks'
+  end
+  resources :comments, only: [:create, :index, :destroy]
+end
+
+resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
+
+resources :stories, only: [:show] do
   member do
     get 'sho_story'
     get 'sho_theme'
@@ -41,12 +47,6 @@ Rails.application.routes.draw do
   end
 end
 
-resources :stories do
-  resources :comments, only: [:create, :index, :destroy]
-  collection do
-    get :bookmarks
-  end
-end
 
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'

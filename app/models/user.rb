@@ -30,7 +30,6 @@ class User < ApplicationRecord
       end
     end
 
-
     userlevel
 
   end
@@ -40,15 +39,15 @@ class User < ApplicationRecord
   end
 
   def bookmark(story)
-    bookmark_boards << story
+    bookmark_stories << story
   end
   
   def unbookmark(story)
-    bookmark_boards.destroy(story)
+    bookmark_stories.destroy(story)
   end
   
   def bookmark?(story)
-    bookmark_boards.include?(story)
+    bookmark_stories.include?(story)
   end
 
   private

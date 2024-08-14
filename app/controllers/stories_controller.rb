@@ -47,6 +47,10 @@ class StoriesController < ApplicationController
         redirect_to stories_path, notice: 'Story was successfully deleted.'
       end
 
+      def bookmarks
+        @bookmark_stories = current_user.bookmark_stories
+      end
+
       def show
         @story = Story.find(params[:id])
         @story.increment!(:views)
