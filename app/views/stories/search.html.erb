@@ -1,0 +1,11 @@
+<h1>検索結果</h1>
+
+<% if @stories.any? %>
+  <ul>
+    <% @stories.each do |story| %>
+    <%= render 'story', story: story %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>検索結果はありませんでした。</p>
+<% end %>

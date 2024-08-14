@@ -24,4 +24,8 @@ class Story < ApplicationRecord
     validates :era, length: { maximum: 2000, message: "は2000文字以内で入力してください"  }
     validates :character, length: { maximum: 2000, message: "は2000文字以内で入力してください" }
     validates :body, length: { maximum: 10000, message: "は10000文字以内で入力してください" }
+
+    def self.ransackable_attributes(auth_object = nil)
+      ["body", "category", "character", "cover", "created_at", "era", "id", "id_value", "memo", "motif", "name", "place", "status", "theme", "updated_at", "user_id", "views"]
+    end
 end

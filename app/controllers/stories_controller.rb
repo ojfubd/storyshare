@@ -64,14 +64,17 @@ class StoriesController < ApplicationController
       def sho_theme
         @story = Story.find(params[:id])
       end
-    
-      def sho_world_view
-        @story = Story.find(params[:id])
-      end
+
+      
     
       def sho_text
         @story = Story.find(params[:id])
         @comments = @story.comments 
+      end
+
+      def search
+        @stories = @q.result(distinct: true)# 検索結果を取得
+        render :search # 明示的にsearch.html.erbを表示
       end
 
       private
@@ -80,8 +83,7 @@ class StoriesController < ApplicationController
         params.require(:story).permit(:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status)
       end
 
-      def in_transaction?
-        ActiveRecord::Base.connection.open_transactions > 0
+      def set_q
+        @q = Story.ransack(params[:q]) # Ransack::Searchオブジェクトを設定(初期化)
       end
-
 end

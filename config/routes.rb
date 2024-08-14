@@ -28,6 +28,11 @@ Rails.application.routes.draw do
     resources :stories
   end
 
+resources :stories do
+    collection do
+      get 'search'
+    end
+  end
 
 resources :stories do
   collection do

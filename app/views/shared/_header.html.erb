@@ -6,11 +6,11 @@
       <span class='navbar-toggler-icon'></span>
     </button>
 
-    <div class='collapse navbar-collapse' id='navbarContent'>
-      <form class='d-flex ms-auto'>
-        <input class='form-control me-2' type='search' placeholder='検索' aria-label='Search'>
-        <button class='btn btn-outline-success' type='submit'>検索</button>
-      </form>
+    <%= search_form_for @q, url: search_stories_path, method: :get, class: 'd-flex ms-auto' do |f| %>
+      <%= f.text_field :name_cont, class: 'form-control me-2', placeholder: '物語名で検索', aria: { label: 'Search' } %>
+      <%= f.hidden_field :status_eq, value: 'published' %> <!-- statusがpublishedの条件 -->
+      <%= f.submit '検索', class: 'btn btn-outline-success' %>
+    <% end %>
       <ul class='navbar-nav ms-auto'>
         <li class='nav-item'>
           <%= link_to 'プロフィール', my_path, class: 'nav-link' %>
