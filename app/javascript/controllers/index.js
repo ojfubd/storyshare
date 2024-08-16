@@ -16,14 +16,9 @@ application.register("chara-auto-fill", CharaAutoFillController)
 import EraAutoFillController from "./era_auto_fill_controller"
 application.register("era-auto-fill", EraAutoFillController)
 
-import ExampleController from "./example_controller"
-application.register("example", ExampleController)
-
 import GenreAutoFillController from "./genre_auto_fill_controller"
 application.register("genre-auto-fill", GenreAutoFillController)
 
-import IssenController from "./issen_controller"
-application.register("issen", IssenController)
 
 import MemoCountController from "./memo_count_controller"
 application.register("memo-count", MemoCountController)

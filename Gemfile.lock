@@ -105,8 +105,6 @@ GEM
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
-    cssbundling-rails (1.4.0)
-      railties (>= 6.0.0)
     dartsass-rails (0.4.0)
       railties (>= 6.0.0)
     date (3.3.4)
@@ -141,8 +139,6 @@ GEM
     jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jsbundling-rails (1.3.1)
-      railties (>= 6.0.0)
     jwt (2.8.1)
       base64
     loofah (2.22.0)
@@ -345,12 +341,10 @@ DEPENDENCIES
   bootsnap
   capybara
   carrierwave
-  cssbundling-rails
   dartsass-rails (~> 0.4.0)
   debug
   error_highlight (>= 0.4.0)
   jbuilder
-  jsbundling-rails
   pg (~> 1.1)
   pry
   pry-byebug

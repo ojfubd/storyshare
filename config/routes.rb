@@ -28,18 +28,19 @@ Rails.application.routes.draw do
     resources :stories
   end
 
+  resources :stories do
+    collection do
+      get :bookmarks, to: 'stories#bookmarks'
+    end
+    resources :comments, only: [:create, :index, :destroy]
+  end
+
 resources :stories do
     collection do
       get 'search'
     end
   end
 
-resources :stories do
-  collection do
-    get :bookmarks, to: 'stories#bookmarks'
-  end
-  resources :comments, only: [:create, :index, :destroy]
-end
 
 resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
 
