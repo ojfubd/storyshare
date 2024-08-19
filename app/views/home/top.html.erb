@@ -1,23 +1,32 @@
-<p>最新の物語</p>
-<div class="scrollable-container overflow-auto">
-  <ul>
-    <% @latest_stories.each do |latest_story| %>
-    <%= render 'stories/story', story: latest_story %>
-    <% end %>
-  </ul>
-</div>
+<h2>最新の物語</h2>
+  <div class="row">
+    <div class="col-4">
+      <div class="scroll-container">
+        <div class="item">
+          <% @latest_stories.each do |latest_story| %>
+            <% if latest_story.published? %>
+              <%= render 'stories/story', story: latest_story %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>人気の物語</p>
-<div>
-  <ul class="wrapper">
-    <% @popular_stories.each do |popular_story| %>
-      <li class="list">
-        <%= render 'stories/story', story: popular_story %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
+<h2>人気の物語</h2>
+  <div class="row">
+    <div class="col-4">
+      <div class="scroll-container">
+        <div class="item">
+          <% @popular_stories.each do |popular_story| %>
+            <% if popular_story.published? %>
+              <%= render 'stories/story', story: popular_story %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <%= link_to '設定', '#', class: 'nav-link' %>
 

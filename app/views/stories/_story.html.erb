@@ -1,22 +1,46 @@
-<% if current_user == story.user %>
-  <%= image_tag 'sample.jpg', class: 'sample-image' %>
-  <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
-  <span class="story-category"><%= story.category %></span>
-  <%= link_to story_path(story), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link" do %>
-    <i class="bi bi-trash"></i>
-  <% end %>
-  <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
-    <i class="bi bi-pencil-fill"></i>
-  <% end %>
-  <%= render 'stories/bookmark_buttons', { story: story } %>
-  <p>閲覧数:<%= story.views %>view</p>
-<% else %>
-<%= image_tag 'sample.jpg', class: 'sample-image' %>
-  <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
-  <span class="story-category"><%= story.category %></span>
-  <%= render 'stories/bookmark_buttons', { story: story } %>
-    <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
-        <i class="bi bi-pencil-fill"></i>
-    <% end %>
-  <p>閲覧数:<%= story.views %>view</p>
-<% end %>
+<div class="col-sm-12 col-lg-4 mb-3">
+  <div class="card">
+    <%= image_tag 'sample.jpg', class: 'card-img-top sample-image', width: "200", height:"200" %>
+    <div class="card-body">
+      <% if current_user == story.user %>
+        <h4 class="card-title">
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+        </h4>
+        <span class="story-category"><%= story.category %></span>
+        <div class="d-flex justify-content-between mt-2">
+          <%= link_to story_path(story), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link text-danger" do %>
+            <i class="bi bi-trash"></i>
+          <% end %>
+          <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
+            <i class="bi bi-pencil-fill"></i>
+          <% end %>
+        </div>
+        <%= render 'stories/bookmark_buttons', { story: story } %>
+        <p class="mt-2">閲覧数:<%= story.views %> view</p>
+      <% elsif logged_in? %>
+        <h4 class="card-title">
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+        </h4>
+        <span class="story-category"><%= story.category %></span>
+        <%= render 'stories/bookmark_buttons', { story: story } %>
+        <div class="d-flex justify-content-end mt-2">
+          <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
+            <i class="bi bi-pencil-fill"></i>
+          <% end %>
+        </div>
+        <p class="mt-2">閲覧数:<%= story.views %> view</p>
+      <% else %>
+        <h4 class="card-title">
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+        </h4>
+        <span class="story-category"><%= story.category %></span>
+        <div class="d-flex justify-content-end mt-2">
+          <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
+            <i class="bi bi-pencil-fill"></i>
+          <% end %>
+        </div>
+        <p class="mt-2">閲覧数:<%= story.views %> view</p>
+      <% end %>
+    </div>
+  </div>
+</div>

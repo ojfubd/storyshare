@@ -73,7 +73,7 @@ class StoriesController < ApplicationController
       end
 
       def search
-        @stories = @q.result(distinct: true)# 検索結果を取得
+        @stories = @q.result.where(status: 1)# 検索結果を取得
         render :search # 明示的にsearch.html.erbを表示
       end
 

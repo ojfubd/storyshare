@@ -1,9 +1,10 @@
 <h1>本文</h1>
-<p><strong>Body:</strong> <%= @story.body %></p>
+<p><%= @story.body %></p>
 
-<p>コメント作成予定</p>
+
 
 <h3>コメント</h3>
+
 <%= form_with(model: [ @story, Comment.new ], local: true) do |form| %>
   <div>
     <%= form.text_area :content %>
@@ -15,15 +16,24 @@
 
 <h4>コメント一覧</h4>
 <% @comments.each do |comment| %>
-  <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
-  <% if current_user == comment.user %>
-    <%= link_to  story_comment_path(comment.story_id, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link" do %>
-      <i class="bi bi-trash"></i>
+  <div class="card">
+    <div class="card-body">
+      <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
+      <% if current_user == comment.user %>
+        <%= link_to  story_comment_path(comment.story_id, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除してもいいですか' }, class: "delete-link" do %>
+          <i class="bi bi-trash"></i>
+      <% end %>
     <% end %>
-    <%= link_to "編集", '#', class: 'edit-link' %>
-  <% end %>
+    </div>
+  </div>
 <% end %>
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
 <%= link_to "物語作成画面に戻る", stories_path %>
 <br>
 <%= link_to "トップ画面に戻る", root_path %>

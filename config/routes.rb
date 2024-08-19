@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  get 'bookmarks/create'
-  get 'bookmarks/destroy'
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
   get 'my', to:'home#my'
   get 'myedit', to: 'home#myedit'
+  get 'mystory', to: 'home#mystory'
   post 'guest_sign_in', to: 'home#new_guest'
   patch 'myupdate', to: 'home#myupdate'
   put 'myupdate', to: 'home#myupdate'
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   resources :users, only: [:new, :create, :edit, :update]
   delete 'users/:id', to: 'users#destroy', as: 'delete_user'
+
+
 
   namespace :admin do
     root "dashboards#index"
@@ -30,25 +31,19 @@ Rails.application.routes.draw do
 
   resources :stories do
     collection do
+      get :search, to: 'stories#search'
       get :bookmarks, to: 'stories#bookmarks'
     end
     resources :comments, only: [:create, :index, :destroy]
   end
 
-resources :stories do
-    collection do
-      get 'search'
-    end
-  end
-
+resources :bookmarks, only: %i[create destroy]
 
 resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
 
 resources :stories, only: [:show] do
   member do
     get 'sho_story'
-    get 'sho_theme'
-    get 'sho_world_view'
     get 'sho_text'
   end
 end

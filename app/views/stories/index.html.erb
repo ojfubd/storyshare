@@ -1,12 +1,22 @@
 <%= link_to '物語作成', new_story_path, class: 'btn btn-lg btn-primary' %>
-<p>自分の物語</p>
+<h2>自分の物語</h2>
+  <div class="row">
 <% @stories.each do |story| %>
-  <%= render 'story', story: story %>
-<% end %>
-
-<p>みんなの物語</p>
-<% @stories.each do |story| %>
-  <% if story.published? %>
+  <% if current_user == story.user %>
+    <div class="col-4">
     <%= render 'story', story: story %>
+    </div>
   <% end %>
 <% end %>
+  </div>
+
+<h2>みんなの物語</h2>
+<div class="row">
+<% @stories.each do |story| %>
+  <% if story.published? %>
+    <div class="col-4">
+    <%= render 'story', story: story %>
+    </div>
+  <% end %>
+<% end %>
+</div>

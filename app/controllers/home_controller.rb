@@ -12,6 +12,10 @@ class HomeController < ApplicationController
   end
   def myedit; end
 
+  def mystory
+   @stories = current_user.stories
+  end
+
   def new_guest
     user = User.guest
    @user = login(user.email, '0000')

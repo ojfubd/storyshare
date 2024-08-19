@@ -1,34 +1,13 @@
-  
-  .scrollable-container ul {
-    display: inline-block; /* 親要素の白空間設定を尊重する */
-    padding: 0; /* パディングをリセットする */
-    margin: 0; /* マージンをリセットする */
-  }
-  
-  .scrollable-container li {
-    display: inline-block; /* アイテムをインラインブロックにして水平に並べる */
-    margin-right: 10px; /* 要素間のスペースを調整 */
-    text-align: center; /* テキストを中央揃えにする */
+  .scroll-container {
+    width: 300%; /* 親要素の幅を設定 */
+    overflow-x: auto; /* 横スクロールを許可 */
+    white-space: nowrap; /* 子要素を横に並べる */
+    display: flex; /* 横並びにするため */
   }
 
-  .wrapper ul{
-    display: flex;
-    gap: 40px;
-    overflow-x: auto;
-  /*   見た目整理用 */
-    background: lightgray;
-    width: 800px;
-    margin-bottom: 40px;
-  }
-  
-  .list li{
-    flex-grow: 1;
-    min-width: 240px;
-    max-width: calc(50% - 20px);
-  /*   見た目整理用 */
-    background: #ffffff;
-    border: 1px solid gray;
-    border-radius: 8px;
-    display: block;
-    height: 80px;
+  .item {
+    display: flex; /* 横並びにするため */
+    width: 300px; /* 各アイテムの幅を設定 */
+    height: 400px; /* 各アイテムの高さを設定 */
+    margin-right: 100px; /* アイテム間のスペースを設定 */
   }

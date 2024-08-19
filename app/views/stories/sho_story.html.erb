@@ -3,7 +3,7 @@
 <%# ゲスト機能ができるまでemailになるがゲスト機能ができたらnameに戻す %>
 <p><strong>作品名:</strong> <%= @story.name %></p>
 <p><strong>分類:</strong> <%= @story.category %></p>
-<p><strong>公開:</strong> <%= @story.status %></p>
+<p><strong>公開設定:</strong> <%= @story.published? ? '公開' : '非公開' %></p>
 <p>閲覧数: <%= @story.views %> view</p>
 
 <h1>テーマ決め</h1>

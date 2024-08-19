@@ -13,6 +13,7 @@ gem 'sorcery'
 #画像アップロード機能
 gem 'carrierwave'
 
+
 #デバックツール
 gem 'pry'
 gem 'pry-byebug'

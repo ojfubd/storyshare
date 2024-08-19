@@ -5,16 +5,16 @@
 
   <p>基本設定</p>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <p>作品名</p>
+    <%= f.text_area :name, rows: 3 %>
   </div>
 
   <div>
-    <%= f.label :category %>
+    <p>カテゴリー</p>
     <%= f.select :category, Story.categories.keys.map { |k| [k.humanize, k] } %>
   </div>
-  <%= f.label :status %>
-  <%= f.select :status, Story.statuses.keys.map { |k, v| [k.humanize, k] }, selected: @story.status %>
+  <p>公開設定</p>
+  <%= f.select :status, [['非公開', 'draft'], ['公開', 'published']], selected: @story.status %>
 
 <p>テーマ決め</p>
   <div class="container">

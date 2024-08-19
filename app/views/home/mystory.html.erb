@@ -1,0 +1,9 @@
+ <div class="row">
+<% @stories.each do |story| %>
+  <% if current_user == story.user %>
+    <div class="col-4">
+    <%= render 'stories/story', story: story %>
+    </div>
+  <% end %>
+<% end %>
+  </div>
