@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-lg-4 mb-3">
   <div class="card">
-    <%= image_tag 'sample.jpg', class: 'card-img-top sample-image', width: "200", height:"200" %>
+     <%= image_tag story.cover.present? ? story.cover.url : 'sample.jpg', class: 'card-img-top sample-image', size: '200x200' %>
     <div class="card-body">
       <% if current_user == story.user %>
         <h4 class="card-title">

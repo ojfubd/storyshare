@@ -4,7 +4,7 @@ class User < ApplicationRecord
   after_initialize :set_default_avatar, if: :new_record?
 
 
-  has_many :stories
+  has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_stories, through: :bookmarks, source: :story
@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  enum role: { general: 0, admin: 1 }
+  enum role: { general: 0, admin: 1 ,guest: 2}
 
   def level
     levelList = [1,2,4,6,9,11,13]
@@ -59,8 +59,10 @@ class User < ApplicationRecord
   end
   def self.guest
       find_or_create_by(email: 'guest@example.com') do |user|
+      user.name = 'GuestUser'
       user.password = '0000'
       user.password_confirmation = '0000'
+      user.role = 'guest'
   end
 end
 end

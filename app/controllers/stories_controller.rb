@@ -60,13 +60,7 @@ class StoriesController < ApplicationController
         @story = Story.find(params[:id])
         @story.increment!(:views)
       end
-    
-      def sho_theme
-        @story = Story.find(params[:id])
-      end
-
       
-    
       def sho_text
         @story = Story.find(params[:id])
         @comments = @story.comments 
@@ -80,7 +74,7 @@ class StoriesController < ApplicationController
       private
 
       def story_params
-        params.require(:story).permit(:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status)
+        params.require(:story).permit(:cover, :cover_cache ,:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status)
       end
 
       def set_q

@@ -1,10 +1,11 @@
 <h1>本文</h1>
 <p><%= @story.body %></p>
 
-
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
 
 <h3>コメント</h3>
-
 <%= form_with(model: [ @story, Comment.new ], local: true) do |form| %>
   <div>
     <%= form.text_area :content %>

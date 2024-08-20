@@ -16,6 +16,8 @@ class Story < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :bookmarks, dependent: :destroy
     belongs_to :user
+    mount_uploader :cover, CoverUploader
+
     validates :name, presence: true,length: { maximum: 30, message: "は30文字以内で入力してください" }
     validates :theme, length: { maximum: 1000, message: "は1000文字以内で入力してください"  }
     validates :motif, length: { maximum: 4000, message: "は4000文字以内で入力してください"  }

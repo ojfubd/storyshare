@@ -1,25 +1,32 @@
-<% flash.each do |key, message| %>
-      <div class="alert alert-<%= key %>"><%= message %></div>
-    <% end %>
-<%= form_with model: @user, local: true do |f| %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :password %>
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 300px;">
+    <div class="card-body">
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key %>"><%= message %></div>
+      <% end %>
+    <p>アカウント作成</p>
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="mb-3">
+      <p>ユーザー名</p>
+        <%= f.text_field :name %>
+    </div>
+    <div class="mb-3">
+      <p>メールアドレス</p>
+        <%= f.text_field :email %>
+    </div>
+  <div class="mb-3">
+    <p>パスワード</p>
     <%= f.password_field :password %>
   </div>
-  <div>
-    <%= f.label :password_confirmation %>
+  <div class="mb-3">
+    <p>パスワード確認</p>
     <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= f.submit '登録' %>
+    <%= f.submit '登録' , class: 'btn btn-primary'%>
   </div>
 <% end %>
+ </div>
+  </div>
+</div>

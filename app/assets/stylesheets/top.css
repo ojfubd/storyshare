@@ -7,7 +7,7 @@
 
   .item {
     display: flex; /* 横並びにするため */
-    width: 300px; /* 各アイテムの幅を設定 */
+    width: 500px; /* 各アイテムの幅を設定 */
     height: 400px; /* 各アイテムの高さを設定 */
-    margin-right: 100px; /* アイテム間のスペースを設定 */
+    margin-right: 300px; /* アイテム間のスペースを設定 */
   }

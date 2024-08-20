@@ -3,7 +3,7 @@
   <div class="row">
 <% @stories.each do |story| %>
   <% if current_user == story.user %>
-    <div class="col-4">
+    <div class="col-5">
     <%= render 'story', story: story %>
     </div>
   <% end %>
@@ -14,7 +14,7 @@
 <div class="row">
 <% @stories.each do |story| %>
   <% if story.published? %>
-    <div class="col-4">
+    <div class="col-5">
     <%= render 'story', story: story %>
     </div>
   <% end %>

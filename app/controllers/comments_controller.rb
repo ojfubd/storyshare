@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
         if @comment.save
           redirect_to sho_text_story_path(@story.id), notice: "コメントが投稿されました"
         else
-          render sho_text_story_path(@story.id), notice: "コメントが投稿失敗しました"
+          redirect_to sho_text_story_path(@story.id), alert: "コメントは１文字以上４００文字以内でお願いします"
         end
       end
     
@@ -25,6 +25,6 @@ class CommentsController < ApplicationController
       private
     
       def comment_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:content, :story_id)
       end
 end
