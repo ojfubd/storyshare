@@ -1,0 +1,7 @@
+ <div class="row">
+<% @stories.each do |story| %>
+    <div class="col-5">
+    <%= render 'admin/stories/story', story: story %>
+    </div>
+<% end %>
+  </div>

@@ -24,7 +24,7 @@
         </div>
         <%= f.submit "変更", class: "btn btn-primary" %>
       <% end %>
-      <%= link_to "アカウント削除",delete_user_path(@user.id), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
+      <%= link_to "アカウント削除",delete_user_path(@user.id), data: { "turbo-method": :delete , turbo_confirm: 'アカウントを削除しますか。アカウントを削除されると作った物語が全て削除されます。'} %>
     </div>
   </div>
 </div>

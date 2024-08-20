@@ -4,13 +4,16 @@ class User < ApplicationRecord
   after_initialize :set_default_avatar, if: :new_record?
 
 
+
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_stories, through: :bookmarks, source: :story
   
   validates :email, presence: true, uniqueness: true
-  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :name, length: { maximum: 20 }
+
+  validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 

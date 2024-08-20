@@ -1,0 +1,16 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= user.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">ID: <%= user.id %></h6>
+    <p class="card-text">作成日: <%= l user.created_at, format: :long %></p>
+    <p class="card-text">役割: <%= user.role %></p>
+    <p class="card-text">メール: <%= user.email %></p>
+    <% if user.avatar.present? %>
+      <img src="<%= user.avatar.url %>" class="card-img-top" alt="User Avatar">
+    <% end %>
+    <div class="d-flex justify-content-between mt-3">
+      <%= link_to '編集', edit_admin_user_path(user), class: 'btn btn-success' %>
+      <%= link_to '削除', admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

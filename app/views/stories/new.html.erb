@@ -32,19 +32,19 @@
     <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
         
-        <%= f.label :theme, class: "form-label", for:'password' %>
+        <p>テーマ</p>
         <%= f.text_area :theme, id:'theme', class: "form-control", rows: 9 %>
         <%= button_tag 'テーマ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "theme-auto-fill" } %>
         <p>文字数: <span id="charCount" data-controller="theme-auto-fill">0</span>/1000</p>
       </div>
       <div class="mb-3">
-        <%= f.label :motif, class: "form-label" %>
+        <p>サブジャンル</p>
         <%= f.text_area :motif, id:'genre', class: "form-control", rows: 9 %>
         <%= button_tag 'まるまるもの（サブジャンル）自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "genre-auto-fill" } %>
         <p>文字数: <span id="charCount1" data-controller="genre-auto-fill">0</span>/4000</p>
       </div>
       <div class="mb-3">
-        <%= f.label :memo, class: "form-label" %>
+        <p>メモ</p>
         <%= f.text_area :memo,id:'memo', class: "form-control", rows: 9 %>
         <p>文字数: <span id="charCount2" data-controller="memo-count">0</span>/4000</p>
       </div>
@@ -56,19 +56,19 @@
   <div class="row">
     <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
-        <%= f.label :place, class: "form-label" %>
+        <p>場所</p>
         <%= f.text_area :place, id:'place',class: "form-control", rows: 9 %>
         <%= button_tag '場所自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "place-auto-fill" } %>
         <p>文字数: <span id="charCount3" data-controller="place-auto-fill">0</span>/2000</p>
       </div>
       <div class="mb-3">
-        <%= f.label :era, class: "form-label" %>
+        <p>時代背景</p>
         <%= f.text_area :era,id:'era', class: "form-control", rows: 9 %>
         <%= button_tag '時代自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "era-auto-fill" } %>
         <p>文字数: <span id="charCount4" data-controller="era-auto-fill">0</span>/2000</p>
       </div>
       <div class="mb-3">
-        <%= f.label :character, class: "form-label" %>
+        <p>キャラクター</p>
         <%= f.text_area :character, id:'chara', class: "form-control", rows: 9 %>
         <%= button_tag 'キャラ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "chara-auto-fill" } %>
         <p>文字数: <span id="charCount5" data-controller="chara-auto-fill">0</span>/2000</p>
@@ -80,7 +80,6 @@
 <p>本文</p>
   <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
-            <%= f.label :body, class: "form-label" %>
             <%= f.text_area :body,id:'body', class: "form-control", rows: 27 %>
             <p>文字数: <span id="charCount6" data-controller="body">0</span>/10000</p>
       </div>

@@ -1,0 +1,93 @@
+<% if @story.errors.any? %>
+  <%= render 'shared/error_message', object: @story %>
+<% end %>
+<%= form_with model: @story, data: { turbo: false }, local: true do |f| %>
+
+  <h2>基本設定</h2>
+
+  <p>表紙</p>
+<div data-controller="image-preview">
+  <%= f.file_field :cover, class: 'form-control mb-3', accept: 'image/*', data: { target: 'image-preview.input' } %>
+  <%= f.hidden_field :cover_cache %>
+  <div class='mt-3 mb-3'>
+   <%= image_tag @story.cover.present? ? @story.cover.url : 'sample.jpg', class: 'rounded-circle', id: 'preview', size: '100x100', data: { target: 'image-preview.preview' } %>
+  </div>
+</div>
+
+  <div>
+    <p>作品名</p>
+    <%= f.text_area :name, rows: 3 %>
+  </div>
+
+  <div>
+    <p>カテゴリー</p>
+    <%= f.select :category, Story.categories.keys.map { |k| [k.humanize, k] } %>
+  </div>
+  <p>公開設定</p>
+  <%= f.select :status, [['非公開', 'draft'], ['公開', 'published']], selected: @story.status %>
+
+<p>テーマ決め</p>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        
+        <%= f.label :theme, class: "form-label", for:'password' %>
+        <%= f.text_area :theme, id:'theme', class: "form-control", rows: 9 %>
+        <%= button_tag 'テーマ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "theme-auto-fill" } %>
+        <p>文字数: <span id="charCount" data-controller="theme-auto-fill">0</span>/1000</p>
+      </div>
+      <div class="mb-3">
+        <%= f.label :motif, class: "form-label" %>
+        <%= f.text_area :motif, id:'genre', class: "form-control", rows: 9 %>
+        <%= button_tag 'まるまるもの（サブジャンル）自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "genre-auto-fill" } %>
+        <p>文字数: <span id="charCount1" data-controller="genre-auto-fill">0</span>/4000</p>
+      </div>
+      <div class="mb-3">
+        <%= f.label :memo, class: "form-label" %>
+        <%= f.text_area :memo,id:'memo', class: "form-control", rows: 9 %>
+        <p>文字数: <span id="charCount2" data-controller="memo-count">0</span>/4000</p>
+      </div>
+    </div>
+  </div>
+
+<p>世界観</p>
+ <div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+        <%= f.label :place, class: "form-label" %>
+        <%= f.text_area :place, id:'place',class: "form-control", rows: 9 %>
+        <%= button_tag '場所自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "place-auto-fill" } %>
+        <p>文字数: <span id="charCount3" data-controller="place-auto-fill">0</span>/2000</p>
+      </div>
+      <div class="mb-3">
+        <%= f.label :era, class: "form-label" %>
+        <%= f.text_area :era,id:'era', class: "form-control", rows: 9 %>
+        <%= button_tag '時代自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "era-auto-fill" } %>
+        <p>文字数: <span id="charCount4" data-controller="era-auto-fill">0</span>/2000</p>
+      </div>
+      <div class="mb-3">
+        <%= f.label :character, class: "form-label" %>
+        <%= f.text_area :character, id:'chara', class: "form-control", rows: 9 %>
+        <%= button_tag 'キャラ自動入力', id: 'auto-fill-link1', type: "button", data: { controller: "chara-auto-fill" } %>
+        <p>文字数: <span id="charCount5" data-controller="chara-auto-fill">0</span>/2000</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>本文</p>
+  <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+            <%= f.label :body, class: "form-label" %>
+            <%= f.text_area :body,id:'body', class: "form-control", rows: 27 %>
+            <p>文字数: <span id="charCount6" data-controller="body">0</span>/10000</p>
+      </div>
+ </div>
+
+  <div class="container">
+    <%= f.submit "登録" %>
+  </div>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@
     <p>アカウント作成</p>
   <%= form_with model: @user, local: true do |f| %>
     <div class="mb-3">
-      <p>ユーザー名</p>
+      <p>ユーザー名（２０文字以内）</p>
         <%= f.text_field :name %>
     </div>
     <div class="mb-3">
@@ -16,7 +16,7 @@
         <%= f.text_field :email %>
     </div>
   <div class="mb-3">
-    <p>パスワード</p>
+    <p>パスワード（３文字以上）</p>
     <%= f.password_field :password %>
   </div>
   <div class="mb-3">
