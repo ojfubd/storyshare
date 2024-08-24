@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
@@ -48,6 +50,7 @@ resources :stories, only: [:show] do
   end
 end
 
+resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'

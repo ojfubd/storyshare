@@ -10,6 +10,13 @@ gem 'redis-rails'
 #certification(認証)
 gem 'sorcery'
 
+gem 'config'
+
+#ブラウザでメールが見れるようにするgem
+group :development do
+  gem 'letter_opener_web', '~> 3.0'
+end
+
 #画像アップロード機能
 gem 'carrierwave'
 

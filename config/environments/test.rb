@@ -44,6 +44,9 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # メール内で生成されるURLの基本情報を指定してる
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 

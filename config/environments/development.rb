@@ -42,6 +42,10 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  #メール受信したメールを確認できるようになる初期段階の設定
+  config.action_mailer.delivery_method = :letter_opener_web
+  # メール内で生成されるURLの基本情報を指定してる
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise

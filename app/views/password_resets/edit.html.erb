@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1>パスワードリセット申請</h1>
+      <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+        <div class="mb-3">
+          <p>Eメール</p>
+          <%= @user.email %>
+        </div>
+        <div class="mb-3">
+          <p>パスワード</p>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <p>パスワード確認</p>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+        <%= f.submit class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
