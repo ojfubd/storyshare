@@ -11,9 +11,13 @@ class User < ApplicationRecord
   has_many :bookmark_stories, through: :bookmarks, source: :story
   
   validates :email, presence: true, uniqueness: true
+  validates :email,format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しい形式で入力してください" }
+  validates :email, length: { maximum: 254, message: "は254文字以内である必要があります" }
+
   validates :name, length: { maximum: 20 }
 
-  validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+\z/ }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 

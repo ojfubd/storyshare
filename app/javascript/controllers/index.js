@@ -19,12 +19,17 @@ application.register("era-auto-fill", EraAutoFillController)
 import GenreAutoFillController from "./genre_auto_fill_controller"
 application.register("genre-auto-fill", GenreAutoFillController)
 
-
 import MemoCountController from "./memo_count_controller"
 application.register("memo-count", MemoCountController)
 
+import PasswordController from "./password_controller"
+application.register("password", PasswordController)
+
 import PlaceAutoFillController from "./place_auto_fill_controller"
 application.register("place-auto-fill", PlaceAutoFillController)
+
+import PreviewController from "./preview_controller"
+application.register("preview", PreviewController)
 
 import ThemeAutoFillController from "./theme_auto_fill_controller"
 application.register("theme-auto-fill", ThemeAutoFillController)

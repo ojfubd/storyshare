@@ -12,16 +12,17 @@
         <%= f.text_field :name %>
     </div>
     <div class="mb-3">
-      <p>メールアドレス</p>
+      <p>メールアドレス(****@****.***の形式で入力してください)</p>
         <%= f.text_field :email %>
     </div>
-  <div class="mb-3">
-    <p>パスワード（３文字以上）</p>
-    <%= f.password_field :password %>
+  <div class="mb-3" id="password">
+    <p>パスワード（８文字以上かつ大文字、小文字、数字、特殊文字を含む必要があります）</p>
+    <%= f.password_field :password , data: { action: "click->password-toggle#toggle" } %>
+    <i class="fa fa-eye"></i>
   </div>
   <div class="mb-3">
     <p>パスワード確認</p>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, data: { action: "click->password-toggle#toggle" }  %>
   </div>
   <div>
     <%= f.submit '登録' , class: 'btn btn-primary'%>
