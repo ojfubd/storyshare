@@ -75,10 +75,6 @@ USER root
 
 RUN chmod 775 /rails/public/uploads/tmp/
 
-ARG SECRET_KEY_BASE
-ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
-
-
 RUN bundle exec rails db:migrate
 
 RUN bundle exec rails db:seed
