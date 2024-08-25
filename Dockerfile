@@ -14,6 +14,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
