@@ -70,6 +70,12 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
+
+# rootユーザーに切り替え
+USER root
+
+RUN chmod 775 /rails/public/uploads/tmp/
+
 USER rails:rails
 
 # Entrypoint prepares the database.
