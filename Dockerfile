@@ -40,6 +40,9 @@ RUN bundle install && \
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
+# Run build script to create assets
+RUN yarn build
+
 # Copy application code
 COPY . .
 
