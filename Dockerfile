@@ -76,7 +76,6 @@ USER root
 
 RUN chmod 775 /rails/public/uploads/tmp/
 
-USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
