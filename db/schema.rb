@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", limit: 20, null: false
+    t.string "name", limit: 50, null: false
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
