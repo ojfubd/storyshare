@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     private
   
     def set_q
-      @q = Story.ransack(params[:q]) # Ransack::Searchオブジェクトを設定
+      @q = Story.ransack(params[:q]) # Ransack::Searchオブジェクトを設定Ransack::Searchオブジェクトを設定
     end
 
     def not_authenticated
