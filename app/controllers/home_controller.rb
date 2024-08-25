@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
   def new_guest
     user = User.guest
-   @user = login(user.email, '0000')
+   @user = login(user.email, 'A1:iiikdd')
    Rails.logger.debug "Login result: #{@user.inspect}"
    if @user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'

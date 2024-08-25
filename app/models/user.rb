@@ -68,8 +68,8 @@ class User < ApplicationRecord
   def self.guest
       find_or_create_by(email: 'guest@example.com') do |user|
       user.name = 'GuestUser'
-      user.password = '0000'
-      user.password_confirmation = '0000'
+      user.password = 'A1:iiikdd'
+      user.password_confirmation = 'A1:iiikdd'
       user.role = 'guest'
   end
 end
