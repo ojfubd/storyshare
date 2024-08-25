@@ -40,11 +40,13 @@ RUN bundle install && \
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-# Run build script to create assets
-RUN yarn build
+
 
 # Copy application code
 COPY . .
+
+# Run build script to create assets
+RUN yarn build
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
