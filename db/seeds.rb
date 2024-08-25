@@ -11,11 +11,11 @@ User.create!([
   {
     name: "管理者",
     email: "admin@example.com",
-    password: "examplepassword",
-    password_confirmation: "examplepassword",
-    crypted_password: "examplepassword",
+    password: "dD@78ff223",
+    password_confirmation: "dD@78ff223",
+    crypted_password: "dD@78ff223",
     salt: "examplesalt",
-    avatar: "exampleavatar.png",
+    avatar: "user.png",
     role: :admin
   },
   {
@@ -25,7 +25,7 @@ User.create!([
     password_confirmation: "dD@78fff",
     crypted_password: "dD@78fff",
     salt: "examplesalt4",
-    avatar: "exampleavatar.png",
+    avatar: "user.png",
     role: :general
   }
 ])
