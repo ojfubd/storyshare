@@ -75,9 +75,7 @@ USER root
 
 RUN chmod 775 /rails/public/uploads/tmp/
 
-RUN bundle exec rails db:migrate
 
-RUN bundle exec rails db:seed
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
