@@ -41,7 +41,6 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 
-
 # Copy application code
 COPY . .
 
@@ -75,6 +74,12 @@ RUN useradd rails --create-home --shell /bin/bash && \
 USER root
 
 RUN chmod 775 /rails/public/uploads/tmp/
+
+ARG SECRET_KEY_BASE
+ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
+
+
+RUN bundle exec rails db:migrate
 
 RUN bundle exec rails db:seed
 
