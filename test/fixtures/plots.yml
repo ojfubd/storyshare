@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story_id: 1
+  beginning: MyString
+  development: MyString
+  turn: MyString
+  conclusion: MyString
+
+two:
+  story_id: 1
+  beginning: MyString
+  development: MyString
+  turn: MyString
+  conclusion: MyString

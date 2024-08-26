@@ -1,0 +1,7 @@
+<div class="row">
+<% @users.each do |user| %>
+    <div class="col-5">
+    <%= render 'admin/users/user', user: user %>
+    </div>
+<% end %>
+</div>

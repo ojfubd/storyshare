@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.5",
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.19",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "esbuild": "^0.23.0",
+    "nodemon": "^3.1.0",
+    "sass": "^1.77.2"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets && esbuild app/javascript/admin.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

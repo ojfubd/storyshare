@@ -1,0 +1,20 @@
+<%= form_with model: @user, local: true do |f| %>
+    <div class="mb-3">
+      <p>ユーザー名</p>
+        <%= f.text_field :name %>
+    </div>
+    <div class="mb-3">
+      <p>メールアドレス</p>
+        <%= f.text_field :email %>
+    </div>
+  <div class="mb-3">
+    <p>パスワード</p>
+    <%= f.password_field :password %>
+  </div>
+  <div class="mb-3">
+    <p>パスワード確認</p>
+    <%= f.password_field :password_confirmation %>
+  </div>
+    <%= f.submit '登録' , class: 'btn btn-primary'%>
+  </div>
+<% end %>

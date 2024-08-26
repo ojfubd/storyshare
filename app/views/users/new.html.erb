@@ -1,0 +1,35 @@
+
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 300px;">
+    <div class="card-body">
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key %>"><%= message %></div>
+      <% end %>
+    <p>アカウント作成</p>
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="mb-3">
+      <p>ユーザー名（２０文字以内）</p>
+        <%= f.text_field :name %>
+    </div>
+    <div class="mb-3">
+      <p>メールアドレス(****@****.***の形式で入力してください)</p>
+        <%= f.text_field :email %>
+    </div>
+  <div class="mb-3" id="password">
+    <p>パスワード（８文字以上かつ大文字、小文字、数字、特殊文字を含む必要があります）</p>
+    <%= f.password_field :password , data: { action: "click->password-toggle#toggle" } %>
+    <i class="fa fa-eye"></i>
+  </div>
+  <div class="mb-3">
+    <p>パスワード確認</p>
+    <%= f.password_field :password_confirmation, data: { action: "click->password-toggle#toggle" }  %>
+  </div>
+  <div>
+    <%= f.submit '登録' , class: 'btn btn-primary'%>
+  </div>
+<% end %>
+  <%= link_to 'ログインページへ', login_path %>
+  <%= link_to 'パスワードお忘れですか', new_password_reset_path %>
+ </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= story.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">ID: <%= story.id %></h6>
+    <p class="card-text">著者: <%=  story.user.name %></p>
+    <p class="card-text">著者のEメール: <%=  story.user.email %></p>
+    <p class="card-text">作成日: <%= story.created_at.strftime("%Y年%m月%d日") %></p>
+    <div class="d-flex justify-content-between">
+      <%= link_to '編集', edit_admin_story_path(story), class: 'btn btn-success' %>
+      <%= link_to '削除', admin_story_path(story), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

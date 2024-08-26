@@ -1,0 +1,12 @@
+ <!-- お気に入りの物語一覧 -->
+  <div class="row">
+    <% if @bookmark_stories.present? %>
+      <% @bookmark_stories.each do |story| %>
+      <div class="col-4">
+        <%= render story %>
+      </div>
+    <% end %>
+    <% else %>
+      <p>お気に入りなし</p>
+    <% end %>
+  </div>

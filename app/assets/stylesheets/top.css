@@ -1,0 +1,13 @@
+  .scroll-container {
+    width: 300%; /* 親要素の幅を設定 */
+    overflow-x: auto; /* 横スクロールを許可 */
+    white-space: nowrap; /* 子要素を横に並べる */
+    display: flex; /* 横並びにするため */
+  }
+
+  .item {
+    display: flex; /* 横並びにするため */
+    width: 500px; /* 各アイテムの幅を設定 */
+    height: 400px; /* 各アイテムの高さを設定 */
+    margin-right: 300px; /* アイテム間のスペースを設定 */
+  }
