@@ -4,7 +4,6 @@ class User < ApplicationRecord
   after_initialize :set_default_avatar, if: :new_record?
 
 
-
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
@@ -16,10 +15,10 @@ class User < ApplicationRecord
 
   validates :name, length: { maximum: 20 }
 
-  validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
-  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+\z/ }
-  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { minimum: 8 }, if: -> { (new_record? || changes[:crypted_password]) && password.present? && !admin_updating? }
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+\z/, if: -> { password.present? && !admin_updating? } }
+  validates :password, confirmation: true, if: -> { (new_record? || changes[:crypted_password]) && password.present? && !admin_updating? }
+  validates :password_confirmation, presence: true, if: -> { (new_record? || changes[:crypted_password]) && password.present? && !admin_updating? }
   validates :reset_password_token, uniqueness: true, allow_nil: true
 
   enum role: { general: 0, admin: 1 ,guest: 2}
@@ -59,6 +58,12 @@ class User < ApplicationRecord
   end
 
   private
+
+  def admin_updating?
+    self.role == 'admin'
+    #管理画面の時は変更を許可して欲しい
+    #管理者の普通のパスワードリセットはできませんとフラッシュメッセージを送ってほしい
+  end
 
   def set_default_avatar
     unless self.avatar?

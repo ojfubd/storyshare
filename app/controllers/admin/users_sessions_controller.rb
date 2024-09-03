@@ -14,7 +14,7 @@ class Admin::UsersSessionsController < Admin::BaseController
   
     def destroy
       logout
-      redirect_to admin_login_path, status: :see_other, danger: 'ログアウトしますか？'
+      redirect_to root_path, status: :see_other, danger: 'ログアウトしますか？'
     end
   end
   

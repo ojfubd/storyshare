@@ -8,6 +8,7 @@
     <div class="d-flex justify-content-between">
       <%= link_to '編集', edit_admin_story_path(story), class: 'btn btn-success' %>
       <%= link_to '削除', admin_story_path(story), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか' }, class: 'btn btn-danger' %>
+      <%= link_to 'コメント', admin_story_comments_path(story.id), class: 'btn btn-success' %>
     </div>
   </div>
 </div>

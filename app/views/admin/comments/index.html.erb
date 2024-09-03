@@ -1,0 +1,23 @@
+<h1>コメント一覧</h1>
+
+<h4>コメント作成</h4>
+<%= form_with(model: [@story, Comment.new], url: admin_story_comments_path(@story), local: true) do |form| %>
+   <div>
+    <%= form.text_area :content, placeholder: "コメントを入力" %>
+  </div>
+  <div>
+    <%= form.submit "コメントを投稿" %>
+  </div>
+<% end %>
+
+<h4>コメント一覧</h4>
+<% @comments.each do |comment| %>
+    <% if comment.id.present? %>
+        <div class="card">
+            <div class="card-body">
+                <p><strong> <%= comment.user.present? ? comment.user.name : "匿名" %>:</strong> <%= comment.content %></p>
+                <%= link_to '削除', admin_story_comment_path(@story.id, comment), data: {turbo_method: :delete, confirm: '本当に削除してもいいですか' } %>
+            </div>
+        </div>
+    <% end %>
+<% end %>

@@ -1,16 +1,4 @@
 <main class="form-signin w-100 m-auto">
   <%= render 'admin/shared/flash_message' %>
-  <%= form_with url: admin_login_path, data: { turbo: false } do |f| %>
-    <h1 class="h3 mb-3 fw-normal">管理者</h1>
-
-    <div class="form-floating">
-      <%= f.email_field :email, class: "form-control", placeholder: "name@example.com" %>
-      <%= f.label :email%>
-    </div>
-    <div class="form-floating">
-      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-      <%= f.label :password %>
-    </div>
-    <%= f.submit "管理者ログイン", class: "w-100 btn btn-lg btn-primary" %>
-  <% end %>
+    <h1 class="h3 mb-3 fw-normal">管理者画面</h1>
 </main>

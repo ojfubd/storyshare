@@ -11,6 +11,10 @@ class Admin::BaseController < ApplicationController
     end
   
     def check_admin
-      redirect_to root_path, danger: "管理者ではありません" unless current_user.admin?
+      if current_user.nil?
+        redirect_to root_path, danger: "管理者ではありません"
+      elsif !current_user.admin?
+      redirect_to root_path, danger: "管理者ではありません"
+      end
     end
 end

@@ -4,6 +4,11 @@ class PasswordResetsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
+    #ここに管理者だった場合強制的にキャンセルする処理にしたい
+    if @user.role == 'admin' || @user.role =='guest'
+      redirect_to login_path, success: 'パスワードを変更しました'
+      return
+    end
     @user&.deliver_reset_password_instructions!
     # 「存在しないメールアドレスです」という旨の文言を表示すると、逆に存在するメールアドレスを特定されてしまうため、
     # あえて成功時のメッセージを送信させている

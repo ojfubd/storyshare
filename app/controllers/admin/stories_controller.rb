@@ -1,4 +1,4 @@
-class Admin::StoriesController < ApplicationController
+class Admin::StoriesController < Admin::BaseController
   def index
     @stories = Story.all
   end
@@ -10,9 +10,10 @@ class Admin::StoriesController < ApplicationController
   def update
     @story = Story.find(params[:id])
     if @story.update(story_params)
-        redirect_to admin_stories_path, notice: 'Story was successfully updated.'
+        redirect_to admin_login_path, notice: 'Story was successfully updated.'
     else
         flash[:error] = @story.errors.full_messages.join(", ")
+        render :edit # ここで元の編集ページに戻る
     end
   end
 
