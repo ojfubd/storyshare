@@ -11,3 +11,11 @@
     height: 400px; /* 各アイテムの高さを設定 */
     margin-right: 300px; /* アイテム間のスペースを設定 */
   }
+
+  .password-container {
+    display: flex; /* 横並びにするための設定 */
+    align-items: center; /* 縦方向の中央揃え */
+    border-top: 1px solid #000; /* 上の線 */
+    border-bottom: 1px solid #000; /* 下の線 */
+    padding: 10px 0; /* 上下の余白 */
+}
