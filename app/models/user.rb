@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_stories, through: :bookmarks, source: :story
+  has_many :likes, dependent: :destroy
+  has_many :like_stories, through: :likes, source: :story
   
   validates :email, presence: true, uniqueness: true
   validates :email,format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しい形式で入力してください" }
@@ -40,6 +42,11 @@ class User < ApplicationRecord
     userlevel
 
   end
+
+  def like(story)
+    like_stories << story
+  end
+
 
   def own?(object)
     id == object&.user_id

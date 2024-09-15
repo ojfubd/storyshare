@@ -1,0 +1,4 @@
+  <%= link_to story_likes_path(story),id:"like-button-for-story-#{story.id}", data: { turbo_method: :delete } do %>
+    <i class="bi bi-heart-fill"></i>
+    <%= story.likes.count %> いいね
+  <% end %>

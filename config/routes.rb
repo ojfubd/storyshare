@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
 resources :bookmarks, only: %i[create destroy]
 
-resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
+resources :stories, only: [:new, :create, :edit, :update, :destroy, :index] do
+  resource :likes, only: [:create, :destroy]
+end
 
 resources :stories, only: [:show] do
   member do
