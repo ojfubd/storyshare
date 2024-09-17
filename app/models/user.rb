@@ -43,6 +43,7 @@ class User < ApplicationRecord
 
   end
 
+
   def like(story)
     like_stories << story
   end
@@ -63,6 +64,7 @@ class User < ApplicationRecord
   def bookmark?(story)
     bookmark_stories.include?(story)
   end
+
 
   private
 

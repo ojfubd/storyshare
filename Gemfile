@@ -12,6 +12,12 @@ gem 'sorcery'
 
 gem 'config'
 
+#グラフを作成する
+gem "chartkick"
+
+#曜日や週をグループ化する最も簡単な方法
+gem "groupdate"
+
 #ブラウザでメールが見れるようにするgem
 group :development do
   gem 'letter_opener_web', '~> 3.0'
