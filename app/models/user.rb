@@ -3,6 +3,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   after_initialize :set_default_avatar, if: :new_record?
 
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -24,30 +26,6 @@ class User < ApplicationRecord
   validates :reset_password_token, uniqueness: true, allow_nil: true
 
   enum role: { general: 0, admin: 1 ,guest: 2}
-
-  def level
-    levelList = [1,2,4,6,9,11,13]
-    story_count = stories.count
-    userlevel = 0
-    #もしカウントがlevelListが+1される
-    #例えばstory_countが5だった場合
-    levelList.each do |level|
-      if story_count >= level
-        userlevel += 1
-      else
-        break
-      end
-    end
-
-    userlevel
-
-  end
-
-
-  def like(story)
-    like_stories << story
-  end
-
 
   def own?(object)
     id == object&.user_id
@@ -79,12 +57,13 @@ class User < ApplicationRecord
       self.avatar = Rails.root.join("app/assets/images/user.png").open
     end
   end
-  def self.guest
+  
+    def self.guest
       find_or_create_by(email: 'guest@example.com') do |user|
       user.name = 'GuestUser'
       user.password = 'A1:iiikdd'
       user.password_confirmation = 'A1:iiikdd'
       user.role = 'guest'
+    end
   end
-end
 end

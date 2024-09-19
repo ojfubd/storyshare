@@ -7,7 +7,6 @@ class HomeController < ApplicationController
   
   def my
     @count = @user.stories.count
-    @level = @user.level
     @next_level = next_level_threshold(@count) - @count
   end
   def myedit
