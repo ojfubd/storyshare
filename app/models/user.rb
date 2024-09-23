@@ -65,5 +65,5 @@ class User < ApplicationRecord
       user.password_confirmation = 'A1:iiikdd'
       user.role = 'guest'
     end
-  end
+    end
 end

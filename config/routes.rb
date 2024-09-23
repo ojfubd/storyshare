@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     collection do
       get :search, to: 'stories#search'
       get :bookmarks, to: 'stories#bookmarks'
+      get :autosearch, to: 'stories#autosearch', format: "js"
     end
     resources :comments, only: [:create, :index, :destroy]
   end

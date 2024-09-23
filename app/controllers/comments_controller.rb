@@ -1,15 +1,15 @@
 class CommentsController < ApplicationController
     def create
-        @story = Story.find(params[:story_id])
-        @comment = @story.comments.new(comment_params)
-        @comment.user = current_user # ユーザーの設定は適宜調整
+      @story = Story.find(params[:story_id])
+      @comment = @story.comments.new(comment_params)
+      @comment.user = current_user # ユーザーの設定は適宜調整
     
-        if @comment.save
-          redirect_to sho_text_story_path(@story.id), notice: "コメントが投稿されました"
-        else
-          redirect_to sho_text_story_path(@story.id), alert: "コメントは１文字以上４００文字以内でお願いします"
-        end
+      if @comment.save
+        redirect_to sho_text_story_path(@story.id), notice: "コメントが投稿されました"
+      else
+        redirect_to sho_text_story_path(@story.id), alert: "コメントは１文字以上４００文字以内でお願いします"
       end
+    end
     
       def index
         @story = Story.find(params[:story_id])

@@ -7,9 +7,17 @@
     </button>
 
     <%= search_form_for @q, url: search_stories_path, method: :get, class: 'd-flex ms-auto' do |f| %>
-      <%= f.text_field :name_cont, class: 'form-control me-2', placeholder: '物語名で検索', aria: { label: 'Search' } %>
+    <div class="relative flex rounded-md">
+      <div data-controller="autocomplete" data-autocomplete-url-value="/stories/autosearch" role="combobox">
+      <%= f.text_field :name_cont, class: 'form-control me-2', placeholder: '物語名で検索', aria: { label: 'Search' } , data: { autocomplete_target: 'input' }%>
+      <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+       </div>
+	  </div>
       <%= f.submit '検索', class: 'btn btn-outline-success' %>
+
     <% end %>
+
       <ul class='navbar-nav ms-auto'>
         <li class='nav-item'>
       <%= link_to new_story_path, class: 'nav-link', style: 'font-size: 24px; color: black; padding: 30px; margin-right: 100px;' do %>

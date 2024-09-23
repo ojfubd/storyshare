@@ -9,11 +9,12 @@ class HomeController < ApplicationController
     @count = @user.stories.count
     @next_level = next_level_threshold(@count) - @count
   end
+  
   def myedit
     unless current_user.role == "general"
       redirect_to my_path, alert: "このアカウントはアカウント情報を変更できません"
     end
-   end
+  end
 
   def mystory
    @stories = current_user.stories

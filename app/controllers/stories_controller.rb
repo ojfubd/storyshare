@@ -71,6 +71,14 @@ class StoriesController < ApplicationController
         render :search # 明示的にsearch.html.erbを表示
       end
 
+      def autosearch
+        @stories = Story.where("name like ?", "%#{params[:q]}%")
+        
+        respond_to do |format|
+          format.js{ render 'home/autosearch' } 
+        end
+      end
+
       private
 
       def story_params
