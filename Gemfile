@@ -49,6 +49,9 @@ gem "dartsass-rails", "~> 0.4.0"
 #search gem 
 gem 'ransack'
 
+#paginate gem
+gem 'kaminari'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

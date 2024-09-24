@@ -4,6 +4,7 @@ class LikesController < ApplicationController
         @like = current_user.likes.new(story_id: @story.id)
         
         if @like.save
+          @story.create_notification_like!(current_user)
         else
             #もし登録できなかった場合
              # 「いいね」が成功した場合の処理

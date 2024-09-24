@@ -1,0 +1,41 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<div class="col-md-6 mx-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to user_path(visitor.id) do %>
+        <%= image_tag 'user.png', style: "height: 100px; width: 100px;" %>
+        <strong><%= visitor.name %></strong>
+      <% end %>
+      さんが
+    </span>
+
+    <% case notification.action %>
+    <% when 'like' %>
+      <%= link_to 'あなたの物語 ' + notification.story.name ,sho_story_story_path(notification.story.id) , style: "font-weight: bold;" %>
+      <%= "にいいねしました" %>
+    <% when 'comment' %>
+      <% if notification.story.user_id == visited.id %>
+        <%= link_to notification.story.name + "物語", sho_story_story_path(notification.story.id), style: "font-weight: bold;" %>
+      <% else %>
+        <span>
+          <%= link_to sho_story_story_path(notification.story.id) do %>
+            <%= image_tag 'user.png', class: "icon_mini", style: "height: 100px; width: 100px;" %>
+            <strong><%= notification.story.user.name + 'さんの投稿' %></strong>
+          <% end %>
+        </span>
+      <% end %>
+      <%= "にコメントしました" %>
+    <% end %>
+    
+    <p class="text-muted mb-0">
+      <%= Comment.find_by(id: notification.comment_id)&.content %>
+    </p>
+  </div>
+
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </div>
+  <hr>
+</div>

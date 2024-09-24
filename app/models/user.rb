@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :bookmark_stories, through: :bookmarks, source: :story
   has_many :likes, dependent: :destroy
   has_many :like_stories, through: :likes, source: :story
+
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   
   validates :email, presence: true, uniqueness: true
   validates :email,format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しい形式で入力してください" }

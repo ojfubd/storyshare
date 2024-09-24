@@ -34,6 +34,18 @@
         <%= link_to 'お気に入り', bookmarks_stories_path, class: 'nav-link' %>
         </li>
         <li class='nav-item'>
+          <%= link_to notifications_path, class: 'nav-link' do %>
+        <% if unchecked_notifications.any? %>
+          <span class="fa-stack">
+            <i class="bi bi-bell-fill" style="font-size: 1.5em;"></i>
+            <i class="bi bi-circle-fill" style="position: absolute; padding-left: 0.5rem; padding-top: 0rem; color: #efa04c; margin-left: -1.5rem;"></i>
+          </span>
+        <% else %>
+            <i class="bi bi-bell-fill" style="font-size: 1.5em;"></i>
+        <% end %>
+        <% end %>
+        </li>
+        <li class='nav-item'>
           <%= link_to "ログアウト", logout_path, class: 'nav-link', method: :delete, data: { turbo_method: :delete }  %>
         </li>
       </ul>

@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
  
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  get 'visitor/:id', to:'users#user'
+
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
+
   get 'my', to:'home#my'
   get 'myedit', to: 'home#myedit'
   get 'mystory', to: 'home#mystory'
@@ -20,10 +24,16 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
-  resources :users, only: [:new, :create, :edit, :update]
+
+resources :users, only: [:new, :create, :edit, :update,:show]
+
   delete 'users/:id', to: 'users#destroy', as: 'delete_user'
 
 
+
+
+
+  resources :notifications, only: :index
 
   namespace :admin do
     root "dashboards#index"
