@@ -1,7 +1,7 @@
 <% assign_meta_tags name: @story.name, image: @story.cover %>
 
 <h1>本文</h1>
-<p><%= @story.body %></p>
+<p id="body"><%= @story.body %></p>
 
 <% if flash[:alert] %>
   <div class="alert"><%= flash[:alert] %></div>

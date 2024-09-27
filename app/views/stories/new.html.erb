@@ -1,6 +1,8 @@
 <% if @story.errors.any? %>
   <%= render 'shared/error_message', object: @story %>
 <% end %>
+
+ 
 <%= form_with model: @story, data: { turbo: false }, local: true do |f| %>
 
   <h2>基本設定</h2>

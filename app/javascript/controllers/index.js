@@ -16,6 +16,9 @@ application.register("chara-auto-fill", CharaAutoFillController)
 import EraAutoFillController from "./era_auto_fill_controller"
 application.register("era-auto-fill", EraAutoFillController)
 
+import FileController from "./file_controller"
+application.register("file", FileController)
+
 import GenreAutoFillController from "./genre_auto_fill_controller"
 application.register("genre-auto-fill", GenreAutoFillController)
 

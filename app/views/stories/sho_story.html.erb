@@ -1,19 +1,23 @@
 <% assign_meta_tags title: @story.name, image: @story.cover %>
 
+<button id = "download" data-controller="file">ファイル形式ダウンロード</button>
+
 <h1>基本設定</h1>
- <p><strong>著者:</strong> <%= @story.user.name %></p>
-<%# ゲスト機能ができるまでemailになるがゲスト機能ができたらnameに戻す %>
-<p><strong>作品名:</strong> <%= @story.name %></p>
-<p><strong>分類:</strong> <%= @story.category %></p>
+ <p id="username"><strong>著者:</strong> <%= @story.user.name %></p>
+<p id="name"><strong>作品名:</strong> <%= @story.name %></p>
+<p id="category"><strong>ジャンル:</strong> <%= @story.category %></p>
 <p><strong>公開設定:</strong> <%= @story.published? ? '公開' : '非公開' %></p>
 <p>閲覧数: <%= @story.views %> view</p>
 
 <h1>テーマ決め</h1>
-<p><strong>テーマ:</strong> <%= @story.theme %></p>
-<p><strong>モチーフ:</strong> <%= @story.motif %></p>
-<p><strong>メモ:</strong> <%= @story.memo %></p>
+<p id="theme"><strong>テーマ:</strong> <%= @story.theme %></p>
+<p id="motif"><strong>モチーフ:</strong> <%= @story.motif %></p>
+<p id="memo"><strong>メモ:</strong> <%= @story.memo %></p>
 <h1>世界観</h1>
-<p><strong>場所:</strong> <%= @story.place %></p>
-<p><strong>時代:</strong> <%= @story.era %></p>
-<p><strong>キャラクター:</strong> <%= @story.character %></p>
+<p id="place"><strong>場所:</strong> <%= @story.place %></p>
+<p id="era"><strong>時代:</strong> <%= @story.era %></p>
+<p id="character"><strong>キャラクター:</strong> <%= @story.character %></p>
+
+<p id="body" hidden><%= @story.body %></p>
+
 <%= link_to "本文を読む", sho_text_story_path(@story) %>
