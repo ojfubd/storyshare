@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :log_in_low
   def new
     @user=User.new
   end

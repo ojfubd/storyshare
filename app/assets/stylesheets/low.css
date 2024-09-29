@@ -1,0 +1,29 @@
+#low-page {
+    text-align: center;
+     display: flex; /* フレックスボックスを使用 */
+    flex-direction: column; /* 縦に並べる */
+    justify-content: center; /* 垂直方向に中央揃え */
+    padding: 2rem;
+}
+label {
+    display: block;
+    margin-bottom: 1rem;
+}
+#btn {
+    background: #0bd;
+    padding: .75rem 1rem;
+    border-radius: 8px;
+}
+#btn:disabled {
+    background: #ccc;
+}
+.terms-box {
+    text-align: center;
+    border: 2px solid #000; /* ボーダーを設定 */
+    padding: 20px; /* 内側の余白 */
+    margin: 20px; /* 外側の余白 */
+    width: 800px; /* 幅を設定 */
+    height: 200px; /* 高さを設定 */
+    background-color: #f9f9f9; /* 背景色 */
+    overflow-y: auto; /* 縦方向にスクロール可能に */
+}

@@ -1,4 +1,22 @@
 module ApplicationHelper
+
+  def log_in_low(current_user)
+    if current_user.present?
+      low_user_read(current_user)
+    else
+      p "ログインなし"
+    end
+  end
+
+  def low_user_read(user)
+    if user.read
+      p "利用規約を同意しています"
+    else
+      redirect_to pages_low_path
+    end
+  end
+
+
     def show_meta_tags
       assign_meta_tags if display_meta_tags.blank?
       display_meta_tags

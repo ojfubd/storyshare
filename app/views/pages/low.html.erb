@@ -1,4 +1,6 @@
+<body id="low-page">
 <h1>利用規約</h1>
+ <div class="terms-box">
 この利用規約（以下，「本規約」といいます。）は，storyshare（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
 
 <h2>第1条（適用）</h2>
@@ -96,3 +98,11 @@
 本規約の解釈にあたっては，日本法を準拠法とします。
 本サービスに関して紛争が生じた場合には，当社の本店所在地を管轄する裁判所を専属的合意管轄とします。
 以上
+</div>
+<%= form_with(url: update_read_path, method: :get, data: { controller: "low" }) do %>
+  <label>
+    <%= check_box_tag :check, nil, false %> 利用規約に同意する
+  </label>
+  <%= submit_tag "同意する", disabled: true, id: "btn" %>
+<% end %>
+</body>

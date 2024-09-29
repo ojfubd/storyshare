@@ -73,6 +73,7 @@ resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'
+  get 'update_read', to: 'home#update_read'
   get 'pages/feedback', to: 'pages#feedback'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

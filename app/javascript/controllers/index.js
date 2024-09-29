@@ -22,6 +22,9 @@ application.register("file", FileController)
 import GenreAutoFillController from "./genre_auto_fill_controller"
 application.register("genre-auto-fill", GenreAutoFillController)
 
+import LowController from "./low_controller"
+application.register("low", LowController)
+
 import MemoCountController from "./memo_count_controller"
 application.register("memo-count", MemoCountController)
 

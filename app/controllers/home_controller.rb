@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :set_user, only: %i[my myedit myupdate]
+  skip_before_action :log_in_low, only: :update_read
   def top
     @latest_stories = Story.order(created_at: :desc).limit(10) # 上位10件
     @popular_stories = Story.order(views: :desc).limit(10) 
@@ -19,6 +20,12 @@ class HomeController < ApplicationController
   def mystory
    @stories = current_user.stories
   end
+
+  def update_read
+   current_user.update!(read: true)
+   redirect_to root_path
+  end
+  
 
   def new_guest
     user = User.guest

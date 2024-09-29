@@ -1,0 +1,7 @@
+<% if current_user %>
+<% if log_in_low(current_user) ==false %>
+  <%= render 'low' %>
+  <% end %>
+<% else %>
+  <p>ログインしていません</p>
+<% end %>
