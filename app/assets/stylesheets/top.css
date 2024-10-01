@@ -19,3 +19,7 @@
     border-bottom: 1px solid #000; /* 下の線 */
     padding: 10px 0; /* 上下の余白 */
 }
+
+.active {
+  border-bottom: 3px solid rgb(69, 48, 255); /* 下に線を入れる */
+}

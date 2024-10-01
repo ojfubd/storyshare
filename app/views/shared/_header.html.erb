@@ -17,24 +17,24 @@
       <%= f.submit '検索', class: 'btn btn-outline-success' %>
 
     <% end %>
-
-      <ul class='navbar-nav ms-auto'>
-        <li class='nav-item'>
-      <%= link_to new_story_path, class: 'nav-link', style: 'font-size: 24px; color: black; padding: 30px; margin-right: 100px;' do %>
-     <i class="bi bi-plus-circle-fill">創作</i>
-      <% end %>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class='navbar-nav ms-auto' data-controller="base">
+      <li class='nav-item'>
+        <%= link_to new_story_path, class: 'nav-link',id:'make' do %>
+          <i class="bi bi-plus-circle-fill">物語作成</i>
+        <% end %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'プロフィール', my_path, class: 'nav-link' %>
+          <%= link_to 'マイページ', my_path, class: 'nav-link',id:'mypage' %>
         </li>
         <li class='nav-item'>
-          <%= link_to '物語', stories_path, class: 'nav-link' %>
+          <%= link_to '物語', stories_path, class: 'nav-link',id:'story' %>
         </li>
         <li class='nav-item'>
-        <%= link_to 'お気に入り', bookmarks_stories_path, class: 'nav-link' %>
+        <%= link_to 'お気に入り', bookmarks_stories_path, class: 'nav-link',id:'fevarite' %>
         </li>
         <li class='nav-item'>
-          <%= link_to notifications_path, class: 'nav-link' do %>
+          <%= link_to notifications_path, class: 'nav-link',id:'notification' do %>
         <% if unchecked_notifications.any? %>
           <span class="fa-stack">
             <i class="bi bi-bell-fill" style="font-size: 1.5em;"></i>
@@ -49,6 +49,7 @@
           <%= link_to "ログアウト", logout_path, class: 'nav-link', method: :delete, data: { turbo_method: :delete }  %>
         </li>
       </ul>
+    </div>
     </div>
   </nav>
 </header>
