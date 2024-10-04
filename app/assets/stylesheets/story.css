@@ -1,0 +1,24 @@
+.image-container{
+    position: relative;
+}
+
+.image-container:hover .card-img-top {
+    opacity: 0.5; /* ホバー時に通常のテキストをうっすら表示 */
+}
+
+.user-name{
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: black; 
+    background: rgb(247, 255, 5); 
+    opacity: 0; 
+    transition: opacity 0.3s;
+}
+.image-container:hover .user-name {
+    opacity: 1; /* 完全に表示 */
+    transition: opacity 0.3s; /* スムーズなトランジション */
+}
+

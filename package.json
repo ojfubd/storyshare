@@ -12,12 +12,14 @@
     "chart.js": "^4.4.4",
     "chartkick": "^5.0.1",
     "esbuild": "^0.23.0",
+    "jquery": "^3.7.1",
     "nodemon": "^3.1.0",
     "sass": "^1.77.2",
+    "slick-carousel": "^1.8.1",
     "stimulus-autocomplete": "^3.1.0"
   },
   "scripts": {
-    "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets && esbuild app/javascript/admin.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.svg=dataurl --loader:.eot=dataurl --loader:.woff=dataurl --loader:.ttf=dataurl --loader:.gif=dataurl && esbuild app/javascript/admin.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --watch --loader:.svg=dataurl --loader:.eot=dataurl --loader:.woff=dataurl --loader:.ttf=dataurl --loader:.gif=dataurl"
   },
   "browserslist": [
     "defaults"

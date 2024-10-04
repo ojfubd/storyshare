@@ -40,5 +40,8 @@ application.register("place-auto-fill", PlaceAutoFillController)
 import PreviewController from "./preview_controller"
 application.register("preview", PreviewController)
 
+import SlickController from "./slick_controller"
+application.register("slick", SlickController)
+
 import ThemeAutoFillController from "./theme_auto_fill_controller"
 application.register("theme-auto-fill", ThemeAutoFillController)

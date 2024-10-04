@@ -9,9 +9,14 @@
       <%= show_meta_tags %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module"%>
   </head>
-  <body>
+  <body style="background: #000; color: #ddd;">
     <%= render 'shared/flash_message' %>
     <% if logged_in? %>
       <%= render 'shared/header' %>
@@ -20,6 +25,7 @@
     <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 
 </html>
