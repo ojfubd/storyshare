@@ -45,3 +45,6 @@ application.register("slick", SlickController)
 
 import ThemeAutoFillController from "./theme_auto_fill_controller"
 application.register("theme-auto-fill", ThemeAutoFillController)
+
+import TitleController from "./title_controller"
+application.register("title", TitleController)

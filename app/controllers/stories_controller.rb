@@ -82,7 +82,7 @@ class StoriesController < ApplicationController
       private
 
       def story_params
-        params.require(:story).permit(:cover, :cover_cache ,:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status)
+        params.require(:story).permit(:cover, :cover_cache ,:name, :category,:commit, :body, :place, :era, :character,:theme, :motif, :memo, :status,:summary)
       end
 
       def set_q

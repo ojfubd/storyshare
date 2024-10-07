@@ -1,5 +1,16 @@
-<% if story.liked_by?(current_user) %>
-  <%= render 'likes/like', { story: story } %>
+<% size = local_assigns[:size] %>
+<%if size=="large"%>
+  <% if story.liked_by?(current_user) %>
+    <%= render 'likes/like', { story: story , size: "large"} %>
+  <% else %>
+    <%= render 'likes/unlike', { story: story, size: "large" } %>
+  <% end %>
+
 <% else %>
-  <%= render 'likes/unlike', { story: story } %>
+  <% if story.liked_by?(current_user) %>
+    <%= render 'likes/like', { story: story } %>
+  <% else %>
+    <%= render 'likes/unlike', { story: story } %>
+  <% end %>
+
 <% end %>

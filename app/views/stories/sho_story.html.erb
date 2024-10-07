@@ -1,10 +1,12 @@
-<% assign_meta_tags title: @story.name, image: @story.cover %>
+<% assign_meta_tags title: @story.name, image: @story.cover , description: @story.summary%>
 
 <button id = "download" data-controller="file">ファイル形式ダウンロード</button>
 
-<h1>基本設定</h1>
- <p id="username"><strong>著者:</strong> <%= @story.user.name %></p>
+<h1>基本情報</h1>
+<strong>著者:</strong>
+<p id="username"><%= @story.user.name %></p>
 <p id="name"><strong>作品名:</strong> <%= @story.name %></p>
+<p id="summay"><strong>副題:</strong> <%= @story.summary %></p>
 <p id="category"><strong>ジャンル:</strong> <%= @story.category %></p>
 <p><strong>公開設定:</strong> <%= @story.published? ? '公開' : '非公開' %></p>
 <p>閲覧数: <%= @story.views %> view</p>
@@ -20,4 +22,4 @@
 
 <p id="body" hidden><%= @story.body %></p>
 
-<%= link_to "本文を読む", sho_text_story_path(@story) %>
+<%= link_to "本文を読む", sho_text_story_path(@story) ,class:"text-button"%>

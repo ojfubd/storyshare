@@ -1,17 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
-
+import 'slick-carousel'
 // Connects to data-controller="slick"
 export default class extends Controller {
   connect() {
-    const btn = document.querySelector('#barkbtn');
-    btn.addEventListener('click', () =>{
-      document.body.classList.toggle('dark-theme');
-
-      if(btn.textContent === 'ダークモードにする'){
-        btn.textContent = 'ライトモードにする';
-      } else {
-        btn.textContent = 'ダークモードにする';
-      }
+    $('.slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true // 矢印ボタンを表示
     });
   }
 }

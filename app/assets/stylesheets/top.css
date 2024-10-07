@@ -40,9 +40,9 @@
 }
 
 .slider{
-	width: 80%; height: auto;/* Slickのサイズ */
+	width: 60%; height: auto;/* Slickのサイズ */
 	margin: auto; padding: 3px;
-	background-color: rgb(255, 255, 255);
+	background-color: #000000;
 }
 
 .slick-prev.slick-arrow, .slick-next.slick-arrow {
@@ -53,6 +53,9 @@
 .slick-prev.slick-arrow:active, .slick-next.slick-arrow:active {
   background-color: rgba(0, 0, 0, 0.7); /* 押したときの背景色を同じにする */
   /* 必要なら色や他のスタイルをここで設定 */
+}
+.slick-dots{
+  background-color: rgba(255, 255, 255, 0.7); /* 押したときの背景色を同じにする */
 }
 
 .body{

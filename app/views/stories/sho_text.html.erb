@@ -31,8 +31,8 @@
       </div>
     </div>
   <% end %>
-
-  <%= render "likes/like_btn", story: @story %>
+<h3>この作品にいいねする</h3>
+  <%= render "likes/like_btn", story: @story ,size:"large"%>
 <% else %>
   <p>ログインするとコメントやいいねができます。</p>
 
@@ -43,7 +43,10 @@
 <br>
 <br>
 <% if current_user != nil%>
-<%= link_to "物語作成画面に戻る", stories_path %>
-<%end%>
+<%= link_to "物語作成画面に戻る", stories_path ,class:"text-button"%>
 <br>
-<%= link_to "トップ画面に戻る", root_path %>
+<br>
+<br>
+<%end%>
+
+<%= link_to "トップ画面に戻る", root_path ,class:"text-button"%>

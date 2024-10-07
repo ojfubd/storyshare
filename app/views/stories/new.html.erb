@@ -5,9 +5,12 @@
  
 <%= form_with model: @story, data: { turbo: false }, local: true do |f| %>
 
-  <h2>基本設定</h2>
-
-  <p>表紙</p>
+<h2>基本情報</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+<p>表紙</p>
 <div data-controller="image-preview">
   <%= f.file_field :cover, class: 'form-control mb-3', accept: 'image/*', data: { target: 'image-preview.input' } %>
   <%= f.hidden_field :cover_cache %>
@@ -19,6 +22,13 @@
   <div>
     <p>作品名</p>
     <%= f.text_area :name, rows: 3, id: 'name' %>
+    <p>文字数: <span id="nameCount" data-controller="title">0</span>/30</p>
+  </div>
+
+  <div>
+    <p>副題</p>
+    <%= f.text_area :summary, rows: 3, id: 'summary' %>
+    <p>文字数: <span id="summaryCount" data-controller="title">0</span>/50</p>
   </div>
 
   <div>
@@ -27,8 +37,13 @@
   </div>
   <p>公開設定</p>
   <%= f.select :status, [['非公開', 'draft'], ['公開', 'published']], selected: @story.status %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>テーマ決め</p>
+
+<h2>テーマ決め</h2>
   <div class="container">
   <div class="row">
     <div class="col-md-7"> <!-- ここで幅を調整 -->
@@ -52,8 +67,10 @@
       </div>
     </div>
   </div>
+</div>
 
-<p>世界観</p>
+
+<h2>世界観</h2>
  <div class="container">
   <div class="row">
     <div class="col-md-7"> <!-- ここで幅を調整 -->
@@ -79,16 +96,25 @@
   </div>
 </div>
 
-<p>本文</p>
-  <div class="col-md-7"> <!-- ここで幅を調整 -->
+<h2>本文</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
       <div class="mb-3">
             <%= f.text_area :body,id:'body', class: "form-control", rows: 27 %>
             <p>文字数: <span id="charCount6" data-controller="body">0</span>/10000</p>
       </div>
- </div>
+    </div>
+  </div>
+</div>
 
-  <div class="container">
-    <%= f.submit "登録" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7"> <!-- ここで幅を調整 -->
+      <div class="mb-3">
+             <%= f.submit "作成完了", class:"entry-button"%>
+      </div>
+    </div>
   </div>
-  </div>
+</div>
 <% end %>

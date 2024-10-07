@@ -1,11 +1,13 @@
 <div class="col-sm-12 col-lg-4 mb-3">
-  <div class="card" style="background-color:rgb(0, 28, 55); ">
+  <div class="card" style="min-width: 100px; min-height: 100px; background-color:rgb(0, 28, 55); ">
     <div class="image-container">
-     <%= image_tag story.cover.present? ? story.cover.url : 'sample.jpg', class: 'card-img-top', size: '200x200' %>
-     <div class="user-name">
-    <%= story.name %> <!-- ここでuserモデルのnameを表示 -->
-  </div>
-</div>
+     <%= link_to sho_story_story_path(story) do %>
+      <%= image_tag(story.cover.present? ? story.cover.url : 'sample.jpg', class: 'card-img-top', size: '150x200') %>
+      <div class="user-name">
+        <%= story.summary %>
+      </div>
+     <% end %>
+    </div>
     <div class="card-body">
       <% if current_user == story.user %>
         <h4 class="card-title">

@@ -20,14 +20,18 @@ class Story < ApplicationRecord
     belongs_to :user
     mount_uploader :cover, CoverUploader
 
-    validates :name, presence: true,length: { maximum: 30, message: "は30文字以内で入力してください" }
-    validates :theme, length: { maximum: 1000, message: "は1000文字以内で入力してください"  }
+    validates :name,length: { maximum: 30, message: "作品名は30文字以内で入力してください" }
+    validate :custom_name_presence
+    validates :theme, length: { maximum: 1000, message: "テーマは1000文字以内で入力してください"  }
     validates :motif, length: { maximum: 4000, message: "は4000文字以内で入力してください"  }
     validates :memo, length: { maximum: 4000, message: "は4000文字以内で入力してください"  }
     validates :place, length: { maximum: 2000, message: "は2000文字以内で入力してください" }
     validates :era, length: { maximum: 2000, message: "は2000文字以内で入力してください"  }
     validates :character, length: { maximum: 2000, message: "は2000文字以内で入力してください" }
     validates :body, length: { maximum: 10000, message: "は10000文字以内で入力してください" }
+    validates :summary, length: { maximum: 50, message: "は50文字以内で入力してください" }
+
+
 
     def liked_by?(user)
       likes.exists?(user_id: user.id)
@@ -79,4 +83,10 @@ class Story < ApplicationRecord
     def self.ransackable_attributes(auth_object = nil)
       ["body", "category", "character", "cover", "created_at", "era", "id", "id_value", "memo", "motif", "name", "place", "status", "theme", "updated_at", "user_id", "views"]
     end
+
+  private
+
+  def custom_name_presence
+    errors.add(:base, "作品名を入力してください") if name.blank?
+  end
 end
