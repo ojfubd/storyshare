@@ -1,0 +1,10 @@
+
+<h2>#<%=@tag.name%></h2>
+<div class="row">
+<% @stories.each do |story| %>
+  <% if current_user == story.user %>
+    <div class="col-5">
+    <%= render 'story', story: story %>
+    </div>
+  <% end %>
+<% end %>

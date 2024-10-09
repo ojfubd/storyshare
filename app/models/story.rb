@@ -17,6 +17,8 @@ class Story < ApplicationRecord
     has_many :bookmarks, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :notifications, dependent: :destroy
+    has_many :story_tags
+    has_many :tags, through: :story_tags
     belongs_to :user
     mount_uploader :cover, CoverUploader
 

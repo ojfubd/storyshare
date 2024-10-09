@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_04_042905) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_08_112656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_04_042905) do
     t.string "summary", limit: 50
   end
 
+  create_table "story_tags", force: :cascade do |t|
+    t.bigint "story_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_tags_on_story_id"
+    t.index ["tag_id"], name: "index_story_tags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 50, null: false
     t.string "email", null: false
@@ -111,4 +127,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_04_042905) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "stories"
   add_foreign_key "likes", "users"
+  add_foreign_key "story_tags", "stories"
+  add_foreign_key "story_tags", "tags"
 end

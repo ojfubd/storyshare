@@ -43,4 +43,10 @@
     </div>
   </div>
 
+  <h1>タグリスト</h1>
+<% @tags_with_story_count.each do |tag| %>
+  <div class="row" style="display: inline-block; margin-right: 10px;">
+    <%= link_to tag.name, searchresult_stories_path(tag: tag.name), style: "width:10%; text-decoration: none; color: white;" %>(<%= tag.stories_count %>)
+  </div>
+<% end %>
 

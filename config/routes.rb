@@ -52,6 +52,7 @@ resources :users, only: [:new, :create, :edit, :update,:show]
       get :search, to: 'stories#search'
       get :bookmarks, to: 'stories#bookmarks'
       get :autosearch, to: 'stories#autosearch', format: "js"
+      get :searchresult, to: 'stories#tag_result'
     end
     resources :comments, only: [:create, :index, :destroy]
   end

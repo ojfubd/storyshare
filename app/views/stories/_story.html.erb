@@ -24,6 +24,13 @@
         </div>
         <%= render 'stories/bookmark_buttons', { story: story } %>
         <p class="mt-2">閲覧数:<%= story.views %> view</p>
+
+    <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
+
+       <%=story.updated_at%>
       <% elsif logged_in? %>
         <h4 class="card-title">
           <%= link_to story.name, sho_story_story_path(story), class: 'story-link',style: 'color:rgb(255, 255, 255);white-space: normal; word-wrap: break-word; display: block; text-decoration: none;' %>
@@ -36,6 +43,12 @@
           <% end %>
         </div>
         <p class="mt-2"style= 'color:rgb(255, 255, 255);'>閲覧数:<%= story.views %> view</p>
+
+         <%=story.updated_at%>
+    <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
       <% else %>
         <h4 class="card-title">
           <%= link_to story.name, sho_story_story_path(story), class: 'story-link',style: 'color:rgb(255, 255, 255);white-space: normal; word-wrap: break-word; display: block; text-decoration: none;' %>
@@ -44,6 +57,12 @@
         <div class="d-flex justify-content-end mt-2">
         </div>
         <p class="mt-2">閲覧数:<%= story.views %> view</p>
+
+        <%=story.updated_at%>
+       <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
       <% end %>
     </div>
   </div>
