@@ -99,10 +99,14 @@
 本サービスに関して紛争が生じた場合には，当社の本店所在地を管轄する裁判所を専属的合意管轄とします。
 以上
 </div>
-<%= form_with(url: update_read_path, method: :get, data: { controller: "low" }) do %>
-  <label>
-    <%= check_box_tag :check, nil, false %> 利用規約に同意する
-  </label>
-  <%= submit_tag "同意する", disabled: true, id: "btn" %>
+<%if current_user.read== false%>
+  <%= form_with(url: update_read_path, method: :get, data: { controller: "low" }) do %>
+    <label>
+      <%= check_box_tag :check, nil, false %> 利用規約に同意する
+    </label>
+    <%= submit_tag "同意する", disabled: true, id: "btn" %>
+  <% end %>
+<%else%>
+<p>同意ありがとうございます。</p>
 <% end %>
 </body>

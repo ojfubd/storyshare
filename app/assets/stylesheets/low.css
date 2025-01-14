@@ -24,6 +24,6 @@ label {
     margin: 20px; /* 外側の余白 */
     width: 800px; /* 幅を設定 */
     height: 200px; /* 高さを設定 */
-    background-color: #f9f9f9; /* 背景色 */
+    background-color: #787878; /* 背景色 */
     overflow-y: auto; /* 縦方向にスクロール可能に */
 }

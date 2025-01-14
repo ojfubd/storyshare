@@ -18,7 +18,8 @@ class HomeController < ApplicationController
   end
 
   def mystory
-   @stories = current_user.stories
+  @user = User.find(params[:id])
+  @stories = @user.stories
   end
 
   def update_read

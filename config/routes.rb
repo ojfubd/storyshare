@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'my', to:'home#my'
   get 'myedit', to: 'home#myedit'
-  get 'mystory', to: 'home#mystory'
+  get 'mystory/:id', to: 'home#mystory', as: 'mystory'
   post 'guest_sign_in', to: 'home#new_guest'
   patch 'myupdate', to: 'home#myupdate'
   put 'myupdate', to: 'home#myupdate'

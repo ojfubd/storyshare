@@ -37,11 +37,6 @@
         </h4>
         <span class="story-category"style= 'color:rgb(255, 255, 255);'>ジャンル:<%= story.category %></span>
         <%= render 'stories/bookmark_buttons', { story: story } %>
-        <div class="d-flex justify-content-end mt-2">
-          <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
-            <i class="bi bi-pencil-fill"></i>
-          <% end %>
-        </div>
         <p class="mt-2"style= 'color:rgb(255, 255, 255);'>閲覧数:<%= story.views %> view</p>
 
          <%=story.updated_at%>

@@ -17,7 +17,7 @@ Eメール:<%=@user.email%>
   <p>このアカウントはアカウント情報を変更できません</p>
 <% end %>
 <p>物語数：<%=@count%></p>
-<%= link_to '物語情報', mystory_path, class: 'btn btn-secondary' %>
+<%= link_to '物語情報', mystory_path(@user.id), class: 'btn btn-secondary' %>
 <h2>日々の物語数</h2>
 <%= line_chart current_user.stories.group_by_day(:created_at, format: "%m/%d").count %>
 <h2>週の物語数</h2>
