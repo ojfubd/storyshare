@@ -1,24 +1,32 @@
 class HomeController < ApplicationController
   before_action :set_user, only: %i[my myedit myupdate]
+  skip_before_action :log_in_low, only: :update_read
   def top
-    @latest_stories = Story.order(created_at: :desc).limit(10) # 上位10件
-    @popular_stories = Story.order(views: :desc).limit(10) 
+      @latest_stories = Story.order(created_at: :desc).limit(10) # 上位10件
+      @popular_stories = Story.order(views: :desc).limit(10) 
+      @tags_with_story_count = Tag.select('tags.*, COUNT(stories.id) AS stories_count').left_joins(:stories).group('tags.id')
   end
   
   def my
     @count = @user.stories.count
-    @level = @user.level
-    @next_level = next_level_threshold(@count) - @count
   end
+  
   def myedit
     unless current_user.role == "general"
       redirect_to my_path, alert: "このアカウントはアカウント情報を変更できません"
     end
-   end
+  end
 
   def mystory
-   @stories = current_user.stories
+  @user = User.find(params[:id])
+  @stories = @user.stories
   end
+
+  def update_read
+   current_user.update!(read: true)
+   redirect_to root_path
+  end
+  
 
   def new_guest
     user = User.guest

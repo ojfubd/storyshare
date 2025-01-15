@@ -10,22 +10,24 @@
 User.create!([
   {
     name: "管理者",
-    email: "admin@example.com",
-    password: "dD@78ff223",
-    password_confirmation: "dD@78ff223",
-    crypted_password: "dD@78ff223",
+    email: "admin2@example.com",
+    password: "dD@78ff224",
+    password_confirmation: "dD@78ff224",
+    crypted_password: "dD@78ff224",
     salt: "examplesalt",
     avatar: "user.png",
-    role: :admin
+    role: :admin,
+    read: false
   },
   {
     name: "ユーザーB",
-    email: "user_b@example.com",
-    password: "dD@78fff",
-    password_confirmation: "dD@78fff",
-    crypted_password: "dD@78fff",
-    salt: "examplesalt4",
+    email: "user_b2@example.com",
+    password: "dD@78fff1",
+    password_confirmation: "dD@78fff1",
+    crypted_password: "dD@78fff1",
+    salt: "examplesalt41",
     avatar: "user.png",
-    role: :general
+    role: :general,
+    read: false
   }
 ])

@@ -1,11 +1,9 @@
  <div class="row">
 <% if @stories.present? %>
   <% @stories.each do |story| %>
-    <% if current_user == story.user %>
       <div class="col-4">
       <%= render 'stories/story', story: story %>
       </div>
-    <% end %>
   <% end %>
 <% else %>
  <p>物語を創作していきましょう！</p>

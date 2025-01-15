@@ -1,12 +1,19 @@
 <div class="col-sm-12 col-lg-4 mb-3">
-  <div class="card">
-     <%= image_tag story.cover.present? ? story.cover.url : 'sample.jpg', class: 'card-img-top sample-image', size: '200x200' %>
+  <div class="card" style="min-width: 100px; min-height: 100px; background-color:rgb(0, 28, 55); ">
+    <div class="image-container">
+     <%= link_to sho_story_story_path(story) do %>
+      <%= image_tag(story.cover.present? ? story.cover.url : 'sample.jpg', class: 'card-img-top', size: '150x200') %>
+      <div class="user-name">
+        <%= story.summary %>
+      </div>
+     <% end %>
+    </div>
     <div class="card-body">
       <% if current_user == story.user %>
         <h4 class="card-title">
-          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link',style: 'color:rgb(255, 255, 255);;white-space: normal; word-wrap: break-word; display: block; text-decoration: none; ' %>
         </h4>
-        <span class="story-category"><%= story.category %></span>
+        <span class="story-category">ジャンル:<%= story.category %></span>
         <div class="d-flex justify-content-between mt-2">
           <%= link_to story_path(story), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "delete-link text-danger" do %>
             <i class="bi bi-trash"></i>
@@ -17,26 +24,40 @@
         </div>
         <%= render 'stories/bookmark_buttons', { story: story } %>
         <p class="mt-2">閲覧数:<%= story.views %> view</p>
+
+    <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
+
+       <%=story.updated_at%>
       <% elsif logged_in? %>
         <h4 class="card-title">
-          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link',style: 'color:rgb(255, 255, 255);white-space: normal; word-wrap: break-word; display: block; text-decoration: none;' %>
         </h4>
-        <span class="story-category"><%= story.category %></span>
+        <span class="story-category"style= 'color:rgb(255, 255, 255);'>ジャンル:<%= story.category %></span>
         <%= render 'stories/bookmark_buttons', { story: story } %>
-        <div class="d-flex justify-content-end mt-2">
-          <%= link_to edit_story_path(story), id: "button-edit-#{story.id}" do %>
-            <i class="bi bi-pencil-fill"></i>
-          <% end %>
-        </div>
-        <p class="mt-2">閲覧数:<%= story.views %> view</p>
+        <p class="mt-2"style= 'color:rgb(255, 255, 255);'>閲覧数:<%= story.views %> view</p>
+
+         <%=story.updated_at%>
+    <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
       <% else %>
         <h4 class="card-title">
-          <%= link_to story.name, sho_story_story_path(story), class: 'story-link' %>
+          <%= link_to story.name, sho_story_story_path(story), class: 'story-link',style: 'color:rgb(255, 255, 255);white-space: normal; word-wrap: break-word; display: block; text-decoration: none;' %>
         </h4>
-        <span class="story-category"><%= story.category %></span>
+        <span class="story-category">ジャンル:<%= story.category %></span>
         <div class="d-flex justify-content-end mt-2">
         </div>
         <p class="mt-2">閲覧数:<%= story.views %> view</p>
+
+        <%=story.updated_at%>
+       <p>タグ： </p>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag.name, searchresult_stories_path(tag: tag.name), class: "badge bg-secondary" %>
+    <% end %>
       <% end %>
     </div>
   </div>

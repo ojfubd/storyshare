@@ -15,6 +15,12 @@ export default class extends Controller {
     if (textArea && charCount) {
       charCount.textContent = textArea.value.length;
     }
+    if(textArea.value.length > 10000){
+      charCount.classList.add('alert');
+    }else{
+      charCount.classList.remove('alert');
+    }
+
   }
 
 }

@@ -1,40 +1,52 @@
+<% assign_meta_tags name: @story.name, image: @story.cover %>
+
 <h1>本文</h1>
-<p><%= @story.body %></p>
+<p id="body"><%= @story.body %></p>
 
 <% if flash[:alert] %>
   <div class="alert"><%= flash[:alert] %></div>
 <% end %>
 
-<h3>コメント</h3>
-<%= form_with(model: [ @story, Comment.new ], local: true) do |form| %>
-  <div>
-    <%= form.text_area :content %>
-  </div>
-  <div>
-    <%= form.submit "コメントを投稿" %>
-  </div>
-<% end %>
-
-<h4>コメント一覧</h4>
-<% @comments.each do |comment| %>
-  <div class="card">
-    <div class="card-body">
-      <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
-      <% if current_user == comment.user %>
-        <%= link_to  story_comment_path(comment.story_id, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除してもいいですか' }, class: "delete-link" do %>
-          <i class="bi bi-trash"></i>
-      <% end %>
-    <% end %>
+<% if current_user != nil%>
+  <h3>コメント</h3>
+  <%= form_with(model: [ @story, Comment.new ], local: true) do |form| %>
+    <div>
+      <%= form.text_area :content %>
     </div>
-  </div>
-<% end %>
+    <div>
+      <%= form.submit "コメントを投稿" %>
+    </div>
+  <% end %>
 
+  <h4>コメント一覧</h4>
+  <% @comments.each do |comment| %>
+    <div class="card">
+      <div class="card-body">
+        <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
+        <% if current_user == comment.user %>
+          <%= link_to  story_comment_path(comment.story_id, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除してもいいですか' }, class: "delete-link" do %>
+            <i class="bi bi-trash"></i>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+<h3>この作品にいいねする</h3>
+  <%= render "likes/like_btn", story: @story ,size:"large"%>
+<% else %>
+  <p>ログインするとコメントやいいねができます。</p>
 
+<%end%>
 <br>
 <br>
 <br>
 <br>
 <br>
-<%= link_to "物語作成画面に戻る", stories_path %>
+<% if current_user != nil%>
+<%= link_to "物語作成画面に戻る", stories_path ,class:"text-button"%>
 <br>
-<%= link_to "トップ画面に戻る", root_path %>
+<br>
+<br>
+<%end%>
+
+<%= link_to "トップ画面に戻る", root_path ,class:"text-button"%>

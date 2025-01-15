@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_08_112656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id"
@@ -34,6 +43,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_likes_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_likes_on_user_id_and_story_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "story_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["story_id"], name: "index_notifications_on_story_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
   create_table "stories", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.string "cover", limit: 55
@@ -50,6 +84,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
     t.integer "user_id"
     t.integer "status", default: 0, null: false
     t.integer "views", default: 0
+    t.string "summary", limit: 50
+  end
+
+  create_table "story_tags", force: :cascade do |t|
+    t.bigint "story_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_tags_on_story_id"
+    t.index ["tag_id"], name: "index_story_tags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,6 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
+    t.boolean "read", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -73,4 +125,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_055852) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "stories"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "stories"
+  add_foreign_key "likes", "users"
+  add_foreign_key "story_tags", "stories"
+  add_foreign_key "story_tags", "tags"
 end

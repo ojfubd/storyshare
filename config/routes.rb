@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
+
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" 
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
  
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  get 'visitor/:id', to:'users#user'
+
   get 'plan/new'
   get 'plan/create'
   root 'home#top'
+
   get 'my', to:'home#my'
   get 'myedit', to: 'home#myedit'
-  get 'mystory', to: 'home#mystory'
+  get 'mystory/:id', to: 'home#mystory', as: 'mystory'
   post 'guest_sign_in', to: 'home#new_guest'
   patch 'myupdate', to: 'home#myupdate'
   put 'myupdate', to: 'home#myupdate'
@@ -16,10 +24,16 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
-  resources :users, only: [:new, :create, :edit, :update]
+
+resources :users, only: [:new, :create, :edit, :update,:show]
+
   delete 'users/:id', to: 'users#destroy', as: 'delete_user'
 
 
+
+
+
+  resources :notifications, only: :index
 
   namespace :admin do
     root "dashboards#index"
@@ -37,13 +51,17 @@ Rails.application.routes.draw do
     collection do
       get :search, to: 'stories#search'
       get :bookmarks, to: 'stories#bookmarks'
+      get :autosearch, to: 'stories#autosearch', format: "js"
+      get :searchresult, to: 'stories#tag_result'
     end
     resources :comments, only: [:create, :index, :destroy]
   end
 
 resources :bookmarks, only: %i[create destroy]
 
-resources :stories, only: [:new, :create, :edit, :update, :destroy, :index]
+resources :stories, only: [:new, :create, :edit, :update, :destroy, :index] do
+  resource :likes, only: [:create, :destroy]
+end
 
 resources :stories, only: [:show] do
   member do
@@ -56,6 +74,7 @@ resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'pages/howto', to: 'pages#howto'
   get 'pages/low', to: 'pages#low'
+  get 'update_read', to: 'home#update_read'
   get 'pages/feedback', to: 'pages#feedback'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

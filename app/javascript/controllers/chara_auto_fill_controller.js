@@ -16,6 +16,12 @@ export default class extends Controller {
     if (textArea && charCount) {
       charCount.textContent = textArea.value.length;
     }
+
+    if(textArea.value.length > 2000){
+      charCount.classList.add('alert');
+    }else{
+      charCount.classList.remove('alert');
+    }
   }
 
   //迷い要素：複数の値を表示させるかどうか

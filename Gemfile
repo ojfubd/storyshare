@@ -12,6 +12,12 @@ gem 'sorcery'
 
 gem 'config'
 
+#グラフを作成する
+gem "chartkick"
+
+#曜日や週をグループ化する最も簡単な方法
+gem "groupdate"
+
 #ブラウザでメールが見れるようにするgem
 group :development do
   gem 'letter_opener_web', '~> 3.0'
@@ -43,6 +49,9 @@ gem "dartsass-rails", "~> 0.4.0"
 #search gem 
 gem 'ransack'
 
+#paginate gem
+gem 'kaminari'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
@@ -52,6 +61,10 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
+
+#動的OGP作成のためのgem
+gem 'meta-tags'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

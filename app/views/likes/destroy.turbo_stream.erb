@@ -1,0 +1,3 @@
+<%= turbo_stream.update "like-button-for-story-#{@story.id}" do %>
+<%= render 'unlike', story: @story %>
+<% end %>

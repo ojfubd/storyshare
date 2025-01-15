@@ -1,3 +1,18 @@
+<%# 画像＋説明表示 %>
+<p>StoryShareは物語のテーマなどを投稿してみんなで共有し改善するサイトです。</p>
+<div class="slider" data-controller= "slick">
+  <div><%= image_tag 'top0.jpg', class: 'card-img-top sample-image', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top1.jpg', class: 'card-img-top sample-image1', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top2.jpg', class: 'card-img-top sample-image2', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top3.jpg', class: 'card-img-top sample-image2', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top5.jpeg', class: 'card-img-top sample-image2', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top6.jpeg', class: 'card-img-top sample-image2', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <div><%= image_tag 'top7.jpg', class: 'card-img-top sample-image2', style: ' width: 100%; height: auto; object-fit: cover;' %></div>
+  <!-- さらに画像を追加 -->
+</div>
+<p>私たちとあなたのもう一つの世界を作りませんか</p>
+<%# トップのみは日出ているタイトルカードはみ出ないようにする %>
+
 <h2>最新の物語</h2>
   <div class="row">
     <div class="col-4">
@@ -28,4 +43,10 @@
     </div>
   </div>
 
+  <h1>タグリスト</h1>
+<% @tags_with_story_count.each do |tag| %>
+  <div class="row" style="display: inline-block; margin-right: 10px;">
+    <%= link_to tag.name, searchresult_stories_path(tag: tag.name), style: "width:10%; text-decoration: none; color: white;" %>(<%= tag.stories_count %>)
+  </div>
+<% end %>
 

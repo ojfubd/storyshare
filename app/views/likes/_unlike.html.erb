@@ -1,0 +1,12 @@
+<% size = local_assigns[:size] %>
+<% if size == "large" %>
+  <%= link_to story_likes_path(story),id: "unlike-button-for-story-#{story.id}",style:" color: rgb(179, 179, 179); text-decoration: none;font-size: 40px;", data: { turbo_method: :post } do %>
+    <i class="bi bi-heart"></i>
+    <%= story.likes.count %>
+  <% end %>
+<%else%>
+  <%= link_to story_likes_path(story),id: "unlike-button-for-story-#{story.id}",style:" color: rgb(179, 179, 179); text-decoration: none;", data: { turbo_method: :post } do %>
+    <i class="bi bi-heart"></i>
+    <%= story.likes.count %>
+  <% end %>
+<% end %>

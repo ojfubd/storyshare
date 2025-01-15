@@ -1,0 +1,91 @@
+.image-container a{
+    position: relative;
+}
+
+.image-container a:hover .card-img-top {
+    opacity: 0.5; /* ホバー時に通常のテキストをうっすら表示 */
+}
+
+a .user-name {
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    opacity: 0; 
+    transition: opacity 0.3s;
+
+    text-align: left; /* 左寄せにする */
+    width: 100%; /* 親要素の幅に合わせる */
+    overflow: hidden; /* はみ出た部分を隠す */
+    text-overflow: ellipsis; /* 省略記号を表示 */
+    word-wrap: break-word; /* 文字を折り返す */
+    overflow-wrap: break-word; /* 文字の折り返しを適用 */
+    white-space: normal; /* 行の折り返しを有効にする */
+
+}
+.image-container a:hover .user-name {
+    opacity: 1; /* 完全に表示 */
+    transition: opacity 0.3s; /* スムーズなトランジション */
+}
+/* storyのviewのnewページ */
+.alert{
+    color: #f66;
+}
+
+.entry-button {
+    background-color:white; /* ボタンの色 */
+    color:#0cb742; /* 文字の色 */
+    padding: 15px 32px; /* 大きさを調整 */
+    font-size: 16px; /* フォントサイズ */
+    border: none; /* ボーダーを消す */
+    border-radius: 4px; /* 角を丸くする */
+    cursor: pointer; /* カーソルをポインターに */
+}
+
+.entry-button:hover{
+    background-color: rgb(8, 187, 14); /* ボタンの色 */
+    color: rgb(255, 255, 255); /* 文字の色 */
+}
+.text-button{
+    background-color: #ffffff; /* ボタンの色 */
+    color: rgb(8, 187, 14);  /* 文字の色 */
+    padding: 7px 20px; /* 大きさを調整 */
+    border: none; /* ボーダーを消す */
+    text-decoration: none;
+}
+
+.text-button:hover{
+    background-color: rgb(8, 187, 14); /* ボタンの色 */
+    color: rgb(255, 255, 255); /* 文字の色 */
+}
+
+#download{
+    background-color: #fdfdfd; /* ボタンの色 */
+    color: rgb(8, 187, 14); /* 文字の色 */
+}
+
+#download:hover{
+    background-color: rgb(8, 187, 14); /* ボタンの色 */
+    color: rgb(255, 255, 255); /* 文字の色 */
+}
+
+.make-button{
+    display: flex; /* フレックスボックスを使う */
+    justify-content: center; /* 水平方向の中央揃え */
+    background-color: #ffffff; /* ボタンの色 */
+    color:  rgb(69, 48, 255);  /* 文字の色 */
+    width:80%;
+    height:40px;
+    border: none; /* ボーダーを消す */
+    text-decoration: none;
+    display: block; /* これを追加 */
+    text-align: center; /* これを追加して中央揃え */
+}
+
+.make-button:hover{
+    background-color: rgb(69, 48, 255); /* ボタンの色 */
+    color: rgb(255, 255, 255); /* 文字の色 */
+}
+

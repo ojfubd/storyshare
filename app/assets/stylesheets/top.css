@@ -11,3 +11,59 @@
     height: 400px; /* 各アイテムの高さを設定 */
     margin-right: 300px; /* アイテム間のスペースを設定 */
   }
+
+  .password-container {
+    display: flex; /* 横並びにするための設定 */
+    align-items: center; /* 縦方向の中央揃え */
+    border-top: 1px solid #000; /* 上の線 */
+    border-bottom: 1px solid #000; /* 下の線 */
+    padding: 10px 0; /* 上下の余白 */
+}
+
+.active {
+  border-bottom: 3px solid rgb(69, 48, 255); /* 下に線を入れる */
+}
+
+@font-face {
+  font-family: 'slick';
+  src: url('/assets/fonts/slick.eot');
+  src: url('/assets/fonts/slick.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/slick.woff') format('woff'),
+       url('/assets/fonts/slick.ttf') format('truetype'),
+       url('/assets/fonts/slick.svg#slick') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.slick-loading .slick-list {
+  background: url('/assets/images/ajax-loader.gif') center center no-repeat #fff;
+}
+
+.slider{
+	width: 60%; height: auto;/* Slickのサイズ */
+	margin: auto; padding: 3px;
+	background-color: #000000;
+}
+
+.slick-prev.slick-arrow, .slick-next.slick-arrow {
+  color: #060505; /* 矢印の色を黒にする */
+  background-color: rgba(0, 0, 0, 0.7); /* 矢印の背景色を白にして透明度を付ける */
+}
+
+.slick-prev.slick-arrow:active, .slick-next.slick-arrow:active {
+  background-color: rgba(0, 0, 0, 0.7); /* 押したときの背景色を同じにする */
+  /* 必要なら色や他のスタイルをここで設定 */
+}
+.slick-dots{
+  background-color: rgba(255, 255, 255, 0.7); /* 押したときの背景色を同じにする */
+}
+
+.body{
+  background: #000;
+  color: #ddd;
+}
+
+.dark-theme{
+  background: #000;
+  color: #ddd;
+}

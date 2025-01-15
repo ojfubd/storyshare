@@ -19,6 +19,12 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'アカウントが削除されました。またのご利用お待ちしています'
   end
 
+  def show
+    @user = User.find(params[:id])
+    @count = @user.stories.count
+    
+  end
+
   private
 
   def user_params

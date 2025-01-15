@@ -1,34 +1,56 @@
 <header>
- <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-    <%= link_to 'StoryShare',root_path, class: 'navbar-brand', style: 'color: #0dcaf0;' %>
+ <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <%= link_to 'StoryShare',root_path, class: 'navbar-brand', style: 'color:rgb(255, 22, 22);' %>
     <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarContent'
       aria-controls='navbarContent' aria-expanded='false' aria-label='Toggle navigation'>
       <span class='navbar-toggler-icon'></span>
     </button>
 
     <%= search_form_for @q, url: search_stories_path, method: :get, class: 'd-flex ms-auto' do |f| %>
-      <%= f.text_field :name_cont, class: 'form-control me-2', placeholder: '物語名で検索', aria: { label: 'Search' } %>
+    <div class="relative flex rounded-md">
+      <div data-controller="autocomplete" data-autocomplete-url-value="/stories/autosearch" role="combobox">
+      <%= f.text_field :name_cont, class: 'form-control me-2', placeholder: '物語名で検索', aria: { label: 'Search' } , data: { autocomplete_target: 'input' }%>
+      <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+       </div>
+	  </div>
+    
       <%= f.submit '検索', class: 'btn btn-outline-success' %>
+
     <% end %>
-      <ul class='navbar-nav ms-auto'>
-        <li class='nav-item'>
-      <%= link_to new_story_path, class: 'nav-link', style: 'font-size: 24px; color: black; padding: 30px; margin-right: 100px;' do %>
-     <i class="bi bi-plus-circle-fill">創作</i>
-      <% end %>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class='navbar-nav ms-auto' data-controller="base">
+      <li class='nav-item'>
+        <%= link_to new_story_path, class: 'nav-link',id:'make' do %>
+          <i class="bi bi-plus-circle-fill">物語作成</i>
+        <% end %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'プロフィール', my_path, class: 'nav-link' %>
+          <%= link_to 'マイページ', my_path, class: 'nav-link',id:'mypage' %>
         </li>
         <li class='nav-item'>
-          <%= link_to '物語', stories_path, class: 'nav-link' %>
+          <%= link_to '物語', stories_path, class: 'nav-link',id:'story' %>
         </li>
         <li class='nav-item'>
-        <%= link_to 'お気に入り', bookmarks_stories_path, class: 'nav-link' %>
+        <%= link_to 'お気に入り', bookmarks_stories_path, class: 'nav-link',id:'fevarite' %>
+        </li>
+        <li class='nav-item'>
+          <%= link_to notifications_path, class: 'nav-link',id:'notification' do %>
+        <% if unchecked_notifications.any? %>
+          <span class="fa-stack">
+            <i class="bi bi-bell-fill" style="font-size: 1.5em;"></i>
+            <i class="bi bi-circle-fill" style="position: absolute; padding-left: 0.5rem; padding-top: 0rem; color: #efa04c; margin-left: -1.5rem;"></i>
+          </span>
+        <% else %>
+            <i class="bi bi-bell-fill" style="font-size: 1.5em;"></i>
+        <% end %>
+        <% end %>
         </li>
         <li class='nav-item'>
           <%= link_to "ログアウト", logout_path, class: 'nav-link', method: :delete, data: { turbo_method: :delete }  %>
         </li>
       </ul>
+    </div>
     </div>
   </nav>
 </header>
